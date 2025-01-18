@@ -18,4 +18,4 @@ cylinder(d=platD+5,h=2.5);
 }//end translate
 }//end difference
 cylinder(d=platD,h=platH);
-%cylinder(d=platEdgeD+22.8,h=platH,$fn=6);
+//%cylinder(d=platEdgeD+22.8,h=platH,$fn=6);
