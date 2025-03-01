@@ -12,23 +12,35 @@ $fn=60;
 matrixL = 192;//127.7;
 matrixH = 192;//127.7;
 
+module platform(){
+
 //make platform
 difference(){
-%cylinder(d=platEdgeD,h=platH,$fn=60);
+cylinder(d=platEdgeD,h=platH,$fn=60);
 translate([0,0,3]){
-%cylinder(d=platD+5,h=2.5);
+cylinder(d=platD+5,h=2.5);
 }//end translate
 }//end difference
 cylinder(d=platD,h=platH);
 //%cylinder(d=platEdgeD+22.8,h=platH,$fn=6);
 
-for(i=[0:60:61]){
+}//end module
+
+module screens(){
+for(i=[0:60:301]){
 rotate([0,0,i]){
 translate([-matrixL/2,platEdgeD/2+95,0]){
 cube([matrixL,2,matrixH]);
         }
     }
+/*
+    //measuring "sticks"
     rotate([0,0,i+90])
 translate([170/2,0,10])
 cube([170,10,2],center=true);
+    */
 }
+}//end module
+
+platform();
+screens();
