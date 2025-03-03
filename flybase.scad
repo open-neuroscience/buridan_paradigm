@@ -30,17 +30,59 @@ module screens(){
 for(i=[0:60:301]){
 rotate([0,0,i]){
 translate([-matrixL/2,platEdgeD/2+95,0]){
-cube([matrixL,2,matrixH]);
+cube([matrixL,12,matrixH]);
         }
     }
 /*
-    //measuring "sticks"
-    rotate([0,0,i+90])
-translate([170/2,0,10])
-cube([170,10,2],center=true);
-    */
+*/
 }
 }//end module
 
+module sticks(){
+  for(i=[0:60:301]){  
+     //measuring "sticks"
+    rotate([0,0,i+90])
+translate([170/2,0,10]){
+cube([170,10,2],center=true);
+}//end translate
+  
+    }//end for
+}//end module
+
+module beams(){
+    for(i=[0:60:301]){  
+rotate([0,0,i]){
+translate([-150/2,175,0]){
+cube([150,15,15]);
+}
+translate([-150/2,175,165]){
+cube([150,15,15]);
+}
+rotate([0,90,0]){
+translate([-150-15,175,80/2]){
+cube([150,15,15]);
+}
+}
+rotate([0,90,0]){
+translate([-150-15,175,-80/2]){
+cube([150,15,15]);
+}
+}
+}
+
+        }//end for
+/*
+        for(i=[0:90:301]){  
+rotate([0,0,i+90])
+translate([15/2,-15/2,-15]){
+cube([200,15,15]);          
+}//end translate
+
+}
+*/
+    }//end module
+//sticks();
 platform();
 screens();
+ 
+    beams();
