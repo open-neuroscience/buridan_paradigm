@@ -53,10 +53,10 @@ module beams(){
     for(i=[0:60:301]){  
 rotate([0,0,i]){
 translate([-150/2,175,0]){
-cube([150,15,15]);
+color("green")cube([150,15,15]);
 }
 translate([-150/2,175,165]){
-cube([150,15,15]);
+color("green")cube([150,15,15]);
 }
 rotate([0,90,0]){
 translate([-150-15,175,80/2]){
@@ -71,18 +71,37 @@ cube([150,15,15]);
 }
 
         }//end for
-/*
-        for(i=[0:90:301]){  
+
+        for(i=[0:180:301]){  
 rotate([0,0,i+90])
-translate([15/2,-15/2,-15]){
-cube([200,15,15]);          
+translate([25,-15/2,-0]){
+cube([150,15,15]);          
 }//end translate
 
 }
-*/
+
     }//end module
-//sticks();
+
+module connectors(){
+translate([-179/2,155,0]){  
+  translate([-40/2,40/2,0])   
+color("red")cube([40,15,15]);
+rotate([0,0,60]){
+translate([-40/2,40/2,0]){
+color("red")cube([40,15,15]);
+}//end translate
+
+}//end rotate
+
+}//end translate
+}//end module
+
+
+sticks();
 platform();
 screens();
- 
-    beams();
+
+translate([0,0,-18]){
+beams();
+connectors();
+}
