@@ -60,12 +60,12 @@ color("green")cube([150,15,15]);
 }
 rotate([0,90,0]){
 translate([-150-15,175,80/2]){
-cube([150,15,15]);
+color("blue")cube([150,15,15]);
 }
 }
 rotate([0,90,0]){
 translate([-150-15,175,-80/2]){
-cube([150,15,15]);
+color("blue")cube([150,15,15]);
 }
 }
 }
@@ -97,7 +97,7 @@ color("red")cube([40,15,15]);
 }//end module
 
 
-sticks();
+//sticks();
 platform();
 screens();
 
