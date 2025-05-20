@@ -4,6 +4,8 @@
 // first design by Andre Maia Chagas 17/01/2025//
 //units in mm //
 
+include <makerbeam.scad>
+
 platD = 117;
 platH = 5;
 platEdgeD = 146.5;//platD+8;
@@ -49,22 +51,22 @@ cube([170,10,2],center=true);
     }//end for
 }//end module
 
-module beams(){
+module beams(r=180){
     for(i=[0:60:301]){  
 rotate([0,0,i]){
-translate([-150/2,175,0]){
+translate([-150/2,r,0]){
 color("green")cube([150,15,15]);
 }
-translate([-150/2,175,165]){
+translate([-150/2,r,165]){
 color("green")cube([150,15,15]);
 }
 rotate([0,90,0]){
-translate([-150-15,175,80/2]){
+translate([-150-15,r,80/2]){
 color("blue")cube([150,15,15]);
 }
 }
 rotate([0,90,0]){
-translate([-150-15,175,-80/2]){
+translate([-150-15,r,-80/2]){
 color("blue")cube([150,15,15]);
 }
 }
@@ -85,10 +87,10 @@ cube([150,15,15]);
 module connectors(){
 translate([-179/2,155,0]){  
   translate([-40/2,40/2,0])   
-color("red")cube([40,15,15]);
+color("red")cube([50,20,20]);
 rotate([0,0,60]){
 translate([-40/2,40/2,0]){
-color("red")cube([40,15,15]);
+color("red")cube([50,20,20]);
 }//end translate
 
 }//end rotate
@@ -103,5 +105,10 @@ screens();
 
 translate([0,0,-18]){
 beams();
-connectors();
+//connectors();
 }
+
+//possible join?
+//difference(){
+//    translate([0,-2.5,-2.5]){rotate([0,0,-30])connectors();}
+//    rotate([0,0,-30])beams();}
