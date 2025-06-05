@@ -47,18 +47,19 @@ difference(){
     translate([0,0,-7])rotate([0,0,15])columns(n=12,d=7,h=10,r=195,center=true);
 }//end difference
 }
-main_assembly();
+//main_assembly();
 
 //translate([0,0,15])platform();
 
 module center_join(){
 difference(){
-translate([0,0,-4.5])cylinder(d=146.5,h=20,$fn=60);
+translate([0,0,-4.5])cylinder(d=100,h=20,$fn=60);
 center_spokes();
 columns(d=3.4,h=30,r=40,n=6);
-    translate([0,0,-17])columns(d=6,h=30,r=40,n=6);
-    columns(d=3.4,h=30,r=50,n=6);
-    translate([0,0,-17])columns(d=6,h=30,r=50,n=6);
+    translate([0,0,-17])columns(d=7.2,h=30,r=40,n=6);
+    columns(d=3.4,h=30,r=25,n=6);
+    translate([0,0,-17])columns(d=7.2,h=30,r=25,n=6);
+    translate([0,0,14]){rotate([0,0,30])columns(d=3.4,r=30,h=3,n=6,fn=30);}
 }}
 
-//center_join();
+center_join();
