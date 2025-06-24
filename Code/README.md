@@ -23,6 +23,7 @@
 4. `./demo help` to explore what else you can do
 5. `sudo ./demo --led-rows=64 --led-cols=64 --led-chain=2 --led-parallel=3 --led-slowdown-gpio=4 --led-pixel-mapper="U-mapper;rotate:90" -D1 runtext.ppm` is a good example of what the closest thing to working
 ## Using the custom pixel mapper
+In an attempt to maximise frame-rate, we wanted to use 3 parallel chains of 2 rather than 1 chain of 6. The custom pixel mapper allows the 3 parallel chains of 2 in the setup to behave as one long continuous banner. See the example at the end of this doc - since the screens are upside-down they still require a 180 degree rotation.
 #### Make Files:
 1. `nano lib/horizontal_mapper.cc`
 2. copy-paste the contents of horizontal_mapper.cc from this repo
