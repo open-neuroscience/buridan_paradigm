@@ -39,7 +39,7 @@ difference(){
     translate([0,0,-10])green_beams(w=60,h=60,l=70,r=175);
     //add nut slots for easier assembly
     translate([0,0,15-3.6])green_beams(w=5.7,h=3.7,l=250,r=185);
-    translate([0,0,7.5])side_holes();
+    translate([0,0,7.5])side_holes(w=3.5);
     
     center_spokes();
     
@@ -47,7 +47,7 @@ difference(){
     translate([0,0,-7])rotate([0,0,15])columns(n=12,d=7,h=10,r=195,center=true);
 }//end difference
 }
-//main_assembly();
+main_assembly();
 
 //translate([0,0,15])platform();
 
@@ -62,4 +62,4 @@ columns(d=3.4,h=30,r=40,n=6);
     translate([0,0,14]){rotate([0,0,30])columns(d=3.4,r=30,h=3,n=6,fn=30);}
 }}
 
-center_join();
+//center_join();
