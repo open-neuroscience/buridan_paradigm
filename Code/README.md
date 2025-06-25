@@ -43,7 +43,7 @@ In an attempt to maximise frame-rate, we wanted to use 3 parallel chains of 2 ra
 8. Add `horizontal_mapper.o` after the last `.o` string
 	* Note that there may be multiple lines, separated by a `\` - this is fine, just add to the end of the last .o line
 9. Save and quit the file
-#### Remake the library(?)
+#### Remake
 1. `cd lib/`
 2. `make`
 3. `cd ..`
