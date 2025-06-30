@@ -43,4 +43,4 @@ module corner(length){
 }
 
 
-makerBeam(50);
+scale(15/20)makerBeam(200*20/15);
