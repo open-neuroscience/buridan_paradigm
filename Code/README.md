@@ -49,4 +49,9 @@ In an attempt to maximise frame-rate, we wanted to use 3 parallel chains of 2 ra
 3. `cd ..`
 4. `make`
 #### Example use in examples-api-use/:
-`sudo ./demo --led-rows=64 --led-cols=64 --led-chain=2 --led-parallel=3 --led-slowdown-gpio=4 --led-pixel-mapper="horizontal_mapper;rotate:180" -D1 runtext.ppm`
+`sudo ./demo --led-rows=64 --led-cols=64 --led-chain=2 --led-parallel=3 --led-slowdown-gpio=4 --led-pixel-mapper="horizontal_mapper;rotate:180" --led-pwm-lsb-nanoseconds=50 --led-pwm-bits=8 -D1 runtext.ppm`
+This example does a few things that a user may find useful:
+1. Uses the custom pixel mapper with 180 degree rotation
+2. Sets the pulse-length to 50 nanoseconds (the minimum value) to help with fps
+3. Sets the bit-depth to 8 - decreasing the range of colours available (from 11-bit) but increases frame rate. Minimum value is 1 for very high fps
+4. Displays refresh rate
