@@ -22,30 +22,31 @@ module psu(){
         translate([5,7,-52])cylinder(d=6.6,h=50,center=false,$fn=6);
     translate([92,3])cylinder(d=3.5,h=50,center=true);
         translate([92,3,-52])cylinder(d=6.6,h=50,center=false,$fn=6);
-    translate([8.5,60])cylinder(d=3.5,h=50,center=true);
-        translate([8.5,60,-52])cylinder(d=6.6,h=50,center=false);
-    translate([88,60])cylinder(d=3.5,h=50,center=true);
-        translate([88,60,-52])cylinder(d=6.6,h=50,center=false);
+    translate([8.5,61.5])cylinder(d=3.5,h=50,center=true);
+        translate([8.5,61.5,-52])cylinder(d=6.6,h=50,center=false);
+    translate([88,61.5])cylinder(d=3.5,h=50,center=true);
+        translate([88,61.5,-52])cylinder(d=6.6,h=50,center=false);
     translate([8.5,180])cylinder(d=3.5,h=50,center=true);
         translate([8.5,180,-52])cylinder(d=6.6,h=50,center=false);
   translate([88,180])cylinder(d=3.5,h=50,center=true);
         translate([88,180,-52])cylinder(d=6.6,h=50,center=false);
     }//end union
-    cube([97,199,42.5]);
+    cube([97.5,199,42.5]);
     //side screws
     translate([30,0,0])union(){
         translate([0,6.5,28.5])rotate([0,90,0])cylinder(h=100,d=3.3);
-        translate([0,22.5,20.5])rotate([0,90,0])cylinder(h=100,d=3.3);
+        translate([0,23.5,21.5])rotate([0,90,0])cylinder(h=100,d=3.3);
         translate([0,178,28.5])rotate([0,90,0])cylinder(h=100,d=3.3);
         translate([0,178,10.5])rotate([0,90,0])cylinder(h=100,d=3.3);
     }//end union
     translate([99,0,0])union(){
         translate([0,6.5,28.5])rotate([0,90,0])cylinder(h=50,d=6.6);
-        translate([0,22.5,20.5])rotate([0,90,0])cylinder(h=50,d=6.6);
+        translate([0,23.5,21.5])rotate([0,90,0])cylinder(h=50,d=6.6);
         translate([0,178,28.5])rotate([0,90,0])cylinder(h=50,d=6.6);
         translate([0,178,10.5])rotate([0,90,0])cylinder(h=50,d=6.6);
     }//end union
 }//end psu
+
 
 module led_board(){
 translate([0,65,14]){rotate([180,0,0]){difference(){
@@ -164,26 +165,30 @@ translate([60,0,25])rotate([90,-90,180])casing();}}
 
 module assembly_cutouts(){
     color("red",0.3)union(){
-        translate([-60,-42.5,13])add_rounds(axis="x",R=15,fn=4)cube([75,42.5,97]);
+        translate([-60,-42.5,12.5])add_rounds(axis="x",R=15,fn=4)cube([75,42.5,97.5]);
         translate([-60,0,15])cube([60,35,80]);
-        translate([0,12,52.5])add_rounds(axis="x",R=4,fn=20)cube([30,20,32]);
+        translate([0,12,52.5])add_rounds(axis="x",R=4,fn=20)cube([31.5,20,32]);
         //translate([0,20,25])rotate([0,90,0])cylinder(d=15,h=30);
-        translate([0,20,25])rotate([0,90,0])cylinder(d=3.3,h=50);
+        *translate([0,20,25])rotate([0,90,0])cylinder(d=3.3,h=50);
         translate([0,20,95])rotate([0,90,0])cylinder(d=3.3,h=50);
-        translate([34,20,25])rotate([0,90,0])cylinder(d=6.6,h=5,$fn=6);
-        translate([34,20,95])rotate([0,90,0])cylinder(d=6.6,h=5,$fn=6);
-        translate([-30,15,60])cylinder(d=15,h=100,$fn=6);
+        *translate([35.5,20,25])rotate([0,90,0])cylinder(d=6.6,h=5,$fn=6);
+        translate([35.5,20,95])rotate([0,90,0])cylinder(d=6.6,h=5,$fn=6);
+        
+        *translate([-30,15,60])cylinder(d=15,h=100,$fn=6);
+        translate([-60,10,60])cube([20,10,100]);
+        translate([-45,25,60])cylinder(d=3.3,h=100,$fn=6);
+        translate([-45,5,60])cylinder(d=3.3,h=100,$fn=6);
         
         for(y=[-45:81:36]){for(z=[12:96:109]){
             translate([-65,y,z])rotate([0,90,0])cylinder(h=25,d=3.3,$fn=6);
             translate([-65,y,z])rotate([0,90,0])cylinder(h=3.5,d=6,$fn=20);
         }}
     }}//end assembly_cutouts
-//assembly_cutouts();
+//!assembly_cutouts();
 
 module power_case(){
     difference(){
-        translate([-60,-50,13-5.5])add_rounds(axis="x",R=4,fn=20)cube([90,90,105]);
+        translate([-60,-50,13-5.5])add_rounds(axis="x",R=4,fn=20)cube([91.5,90,105]);
         difference(){
         assembly();
             color("red",0.3)translate([0,-42.5,95])cube(15);
@@ -201,14 +206,14 @@ module power_lid(){
 
 module electronics_case(){
 difference(){
-translate([66,0,52.5])rotate([90,-90,180])casing(left_shift=105-69);
+translate([67.5,0,52.5])rotate([90,-90,180])casing(left_shift=105-69);
     assembly();
     assembly_cutouts();}}
 
 module electronics_lid(){
 intersection(){
-translate([66,35,52.5])rotate([90,-90,180])casing_lid(left_shift=105-69);
-translate([30,-50,13-5.5])add_rounds(axis="x",R=4,fn=20)cube([123,90,105]);}}
+translate([67.5,35,52.5])rotate([90,-90,180])casing_lid(left_shift=105-69);
+translate([31.5,-50,13-5.5])add_rounds(axis="x",R=4,fn=20)cube([123,90,105]);}}
 
 //assembly();
 translate([2,0,0])electronics_case();
