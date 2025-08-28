@@ -74,8 +74,9 @@ module cutouts(){
         translate([21.8,80,0.8])cube([15.5,25,17]); //usb
         translate([39.8,80,0.8])cube([15.5,25,17]); //usb
         //translate([-25,7,4])cube([35,52,5]); // gpio knockout
+        translate([58.5,-10,-2])add_rounds(axis="x",R=4)cube([16,75,10.5]); // thinner wall
     }}//end module
-
+//!cutouts();
     
 module boards(){
     led_board();
@@ -128,7 +129,7 @@ module casing(thickness=4,screw_head=false,brick=false,left_shift=0){
         translate([-2-left_shift,-28,-7])hex_grid(x=left_shift,y=88+25,z=0.4,d=12.5,thickness=3);
         translate([-2-left_shift,-28,35-8])hex_grid(x=left_shift,y=88+25,z=1,d=12.5,thickness=3);
     }//end difference
-    translate([0,0,-3])stilts();
+    translate([0,0,-3])stilts(fn=20);
     translate([0,0,-3])stilts(h=1,d=8,fn=20);
     
 }
