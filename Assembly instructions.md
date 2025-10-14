@@ -2,18 +2,19 @@
    ![[images/1- 3D parts.png]]
 ## 2. Assemble 6 screen mounts:
 1. Add 4 m3x6 screws and nuts to each (6) X-brace part:  
-   ![[images/2- X-brace screws.png]]
+   !()[images/2- X-brace screws.png]
 2. Slide makerbeamXL (150mm) on each side of each X-brace:  
-   ![[images/3- Attach beams to x-brace.png]]  
-   ![[4- beams with X-brace.png]]  
+   !()[images/3- Attach beams to x-brace.png]  
+   !()[4- beams with X-brace.png]  
 3. Slide in 2 nuts to each side and screw on a printed 32mm (image left) and 34mm (image right) screen bracket to each side as shown:  
-   ![[images/5- Adding screen brackets.png]]
+   !()[images/5- Adding screen brackets.png]
 4. Attach screws and nuts to (12) t-plates and insert into the head of each unit as shown: (flipped)  
    _For TWO of these units, make sure to include two extra nuts between the T-plates_
-   ![[images/6- Adding t-plate.png]]
+   !()[images/6- Adding t-plate.png]
 5. Slide another 150mm makerbeamXL on to the top of the unit:    ![[images/8- Adding top-bar.png]]
 6. Slide in two nuts and screw on the 17mm screen bracket:  
-   ![[images/9- Attach top screen-mount.png]]  _Remember the extra nuts for two units_  ![[Extra nuts screen mount.png]]
+   !()[images/9- Attach top screen-mount.png]  _Remember the extra nuts for two units_  
+    !()[Extra nuts screen mount.png]
 ## 3. Assemble central hub
 _Remember to glue in magnets to the top holes so they match those in the fly-base
 1. Add screws and nuts to the central hub object:  
