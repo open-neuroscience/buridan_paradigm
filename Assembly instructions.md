@@ -2,7 +2,7 @@
    ![[images/1- 3D parts.png]]
 ## 2. Assemble 6 screen mounts:
 1. Add 4 m3x6 screws and nuts to each (6) X-brace part:  
-   ![](images/2- X-brace screws.png)
+   ![](images/2-%20X-brace%20screws.png)
 2. Slide makerbeamXL (150mm) on each side of each X-brace:  
    !()[images/3- Attach beams to x-brace.png]  
    !()[4- beams with X-brace.png]  
