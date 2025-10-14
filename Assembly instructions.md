@@ -16,7 +16,7 @@
    ![](images/9-%20Attach%20top%20screen-mount.png)  _Remember the extra nuts for two units_  
     ![](images/Extra%20nuts%20screen%20mount.png)
 ## 3. Assemble central hub
-_Remember to glue in magnets to the top holes so they match those in the fly-base
+_Remember to glue in magnets to the top holes so they match those in the fly-base_
 1. Add screws and nuts to the central hub object:  
    ![](images/10-%20Central-hub%20screws%20bottom.png)  ![](images/11-%20Central%20hub%20nuts.png)
 2. Slide in six makerbeamXL 200mm beams:
@@ -47,7 +47,7 @@ _Remember to glue in magnets to the top holes so they match those in the fly-bas
    ![](images/Remember%20extra%20nuts.png)
 3. Good job!
    ![](images/Finished%20frame.png)
-4. Add nuts to Vertical mounts (x4)
+4. Add nuts to Vertical mounts (x4)  
    ![](images/Assemble%20Vertical%20Mount.png)
 5. Attach vertical screen brackets to sides with extra nuts
    ![](images/Attach%20Vertical%20Join%202.png)
