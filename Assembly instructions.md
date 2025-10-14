@@ -14,7 +14,7 @@
 5. Slide another 150mm makerbeamXL on to the top of the unit:    ![](images/8-%20Adding%20top-bar.png)
 6. Slide in two nuts and screw on the 17mm screen bracket:  
    ![](images/9-%20Attach%20top%20screen-mount.png)  _Remember the extra nuts for two units_  
-    ![](Extra%20nuts%20screen%20mount.png)
+    ![???](Extra%20nuts%20screen%20mount.png)
 ## 3. Assemble central hub
 _Remember to glue in magnets to the top holes so they match those in the fly-base
 1. Add screws and nuts to the central hub object:  
