@@ -48,8 +48,8 @@ _Remember to glue in magnets to the top holes so they match those in the fly-bas
 3. Good job!
    ![](images/Finished%20frame.png)
 4. Add nuts to Vertical mounts (x4)  
-   ![](images/Assemble%20Vertical%20Mount.png)
-5. Attach vertical screen brackets to sides with extra nuts
+   ![](images/Assemble%20Vertical%20Mount.png)  
+5. Attach vertical screen brackets to sides with extra nuts  
    ![](images/Attach%20Vertical%20Join%202.png)
 ## 6. Attach the Screens
 
