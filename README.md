@@ -13,7 +13,13 @@ Currently (Jan 2026) the system is being tested in the laboratory of [Prof. Sugi
 
 Researchers and enthusiasts interested in replicating the system can get in touch with [Andre](andremchagas@proton.me)
 
+
+![](./images/promo_images/angled_view_all_off.jpeg)
+
+![](./images/promo_images/panels_displaying_forms.jpeg)
+
 ![](./images/promo_images/panels_working_video.gif)
+
 
 
 ---
