@@ -19,7 +19,9 @@ scale([hole_dist/denom,1,1])difference(){
 cube([2,76,15],center=true);
 translate([-2,0,nut_h]){add_rounds(R=1,fn=6,axis="y")cube([4,76,2],center=true);}
 }//end union
-translate([hole_dist,0,0])cylinder(h=15,d=3.5,$fn=20,center=true);
+translate([hole_dist,0,0]){cylinder(h=15,d=3.5,$fn=20,center=true);
+    translate([10,0,-5])
+    cube([20,3.5,10],center=true);}
 
 offst = 10;
 translate([0,offst,nut_h]){rotate([0,90,0])cylinder(d=7,h=10,$fn=6);}
@@ -34,13 +36,21 @@ translate([-2.5,-offst,nut_h])cube([3,6.5,3],center=true);
 }//end screen bracket
 
 //8mm bracket
-screen_bracket(hole_dist=8,inner=0.8,outer=1.2,r=15);
+//screen_bracket(hole_dist=13,inner=0.8,outer=1.2,r=15);
+
+//13mm bracket
+//translate([0,-100,0])
+//screen_bracket(hole_dist=13,inner=0.8,outer=1.2,r=15);
+
 
 //34mm
+//translate([0,50,0])
 //screen_bracket();
 
 //32mm
-//screen_bracket(hole_dist=32);
+//translate([0,-50,0])
+screen_bracket(hole_dist=32);
 
 //17mm
+//translate([0,100,0])
 //screen_bracket(hole_dist=17,inner=0.9,outer=1.1,r=15);
