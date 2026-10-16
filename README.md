@@ -11,7 +11,7 @@ This implementation of this paradigm relies on commercially available RGB LED Ma
 
 Currently (Jan 2026) the system is being tested in the laboratory of [Prof. Sugie](https://www.bri.niigata-u.ac.jp/~neuroscience_disease_sugie/lab/en/) at the Niigata University in Japan 
 
-Researchers and enthusiasts interested in replicating the system can get in touch with [Andre](andremchagas@proton.me)
+Researchers and enthusiasts interested in replicating the system can get in touch with [Andre](mailto:andremchagas@proton.me)
 
 
 ![](./images/promo_images/angled_view_all_off.jpeg)
