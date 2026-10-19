@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Self-checking test program for Buridan.Bonsai.
+
+    Run from this folder with "dotnet run", passing two arguments:
+      1. the path to pi/protocols
+      2. (optional) the Pi host name
+    With a host, the network tests talk to a running buridan_server
+    (on the Pi, or locally with the no-hardware option of buridan_server).
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <Nullable>disable</Nullable>
+    <!-- The library targets .NET Framework; it is loaded here only for testing. -->
+    <NoWarn>NU1701;NU1702</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Buridan.Bonsai\Buridan.Bonsai.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Facades that let the Rx 2.x-compiled library run on modern .NET
+         (inside Bonsai on .NET Framework, Rx 2.2.5 itself is used). -->
+    <PackageReference Include="System.Reactive.Core" Version="6.0.1" />
+    <PackageReference Include="System.Reactive.Interfaces" Version="6.0.1" />
+    <PackageReference Include="System.Reactive.Linq" Version="6.0.1" />
+    <PackageReference Include="System.Reactive.PlatformServices" Version="6.0.1" />
+  </ItemGroup>
+
+</Project>

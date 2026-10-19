@@ -1,0 +1,6 @@
+{
+  "panel_order": [0, 1, 2, 3, 4, 5],
+  "panel_flip_x": [false, false, false, false, false, false],
+  "panel_flip_y": [false, false, false, false, false, false],
+  "x_increases_clockwise": true
+}

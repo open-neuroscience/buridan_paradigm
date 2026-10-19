@@ -1,0 +1,4 @@
+# Files created by Setup.cmd (downloaded Bonsai and packages).
+*.exe
+*.exe.*
+Packages

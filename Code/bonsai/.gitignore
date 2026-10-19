@@ -1,0 +1,9 @@
+# Experiment data recorded by the workflow (default data folder).
+data/
+# Build output of the C# projects.
+src/*/bin/
+src/*/obj/
+tests/*/bin/
+tests/*/obj/
+# Layout files store window positions of the person who last ran the workflow.
+*.bonsai.layout

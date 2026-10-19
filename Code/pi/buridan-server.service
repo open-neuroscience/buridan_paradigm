@@ -1,0 +1,29 @@
+# =============================================================================
+# buridan-server.service
+#
+# systemd service that starts buridan_server when the Pi boots, and restarts
+# it if it crashes. Installed by scripts/setup_pi.sh, which replaces
+# @USER@ and @HOME@ with the experiment user (e.g. buridan, /home/buridan).
+#
+# Useful commands on the Pi:
+#   sudo systemctl status buridan-server     # is it running?
+#   sudo systemctl restart buridan-server    # restart (also done by the GUI)
+#   sudo systemctl stop buridan-server       # stop, e.g. to run it by hand
+#   journalctl -u buridan-server -f          # follow its log output
+# =============================================================================
+[Unit]
+Description=Buridan arena LED ring server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Started as root (needed for the LED hardware); buridan_server drops its
+# privileges to @USER@ right after initialising the panels.
+User=root
+ExecStart=@HOME@/buridan/bin/buridan_server --led-drop-priv-user=@USER@ --led-drop-priv-group=@USER@ --protocol-dir=@HOME@/buridan/protocols --arena-config=@HOME@/buridan/arena_config.json
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

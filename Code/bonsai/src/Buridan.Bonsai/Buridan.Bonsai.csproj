@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Buridan.Bonsai: Bonsai operators for the Buridan arena.
+
+    Build the package used by the Bonsai environment with:
+      dotnet pack -c Release -o ../../packages
+    (or run bonsai/build.ps1, which does exactly that).
+  -->
+
+  <PropertyGroup>
+    <!-- Bonsai 2.9 runs on .NET Framework 4.7.2 or later. -->
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <RootNamespace>Buridan.Bonsai</RootNamespace>
+    <AssemblyName>Buridan.Bonsai</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>disable</Nullable>
+
+    <!-- NuGet package metadata. The "Bonsai" tag makes Bonsai load the package. -->
+    <PackageId>Buridan.Bonsai</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Buridan arena project</Authors>
+    <Title>Buridan Arena operators for Bonsai</Title>
+    <Description>Operators to control the Buridan arena LED ring (Raspberry Pi running buridan_server), edit stimulus protocols and record experiment sessions.</Description>
+    <PackageTags>Bonsai Rx Buridan Arena LED Insect Behaviour</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bonsai.Core" Version="2.9.1" />
+    <PackageReference Include="Bonsai.Design" Version="2.9.1" />
+    <PackageReference Include="Bonsai.Vision" Version="2.9.1" />
+    <PackageReference Include="NetMQ" Version="4.0.1.12" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SSH.NET" Version="2026.0.0" />
+    <!-- Allows building the .NET Framework library with the cross-platform SDK. -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+</Project>
