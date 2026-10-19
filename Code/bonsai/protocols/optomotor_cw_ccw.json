@@ -1,19 +1,19 @@
 {
   "name": "optomotor_cw_ccw",
   "schema_version": 1,
-  "frame_rate_hz": 60,
+  "frame_rate_hz": 240,
   "epochs": [
-    { "type": "blank", "duration_s": 30, "params": { "rgb": [0, 0, 0] } },
+    { "type": "blank", "duration_s": 10, "params": { "rgb": [0, 255, 0] } },
     {
       "type": "grating",
-      "duration_s": 60,
-      "params": { "period_deg": 30, "speed_deg_s": 45, "direction": "cw", "waveform": "square", "duty_cycle": 0.5 }
+      "duration_s": 30,
+      "params": { "rgb": [0, 255, 0] ,"period_deg": 30, "speed_deg_s": 45, "direction": "cw", "waveform": "square", "duty_cycle": 0.5 }
     },
     {
       "type": "grating",
       "duration_s": 60,
       "params": { "period_deg": 30, "speed_deg_s": 45, "direction": "ccw", "waveform": "square", "duty_cycle": 0.5 }
     },
-    { "type": "blank", "duration_s": 30, "params": { "rgb": [0, 0, 0] } }
+    { "type": "blank", "duration_s": 30, "params": { "rgb": [0, 255, 0] } }
   ]
 }

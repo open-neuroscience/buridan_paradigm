@@ -1,14 +1,14 @@
 {
   "name": "stripes_then_sine_grating",
   "schema_version": 1,
-  "frame_rate_hz": 60,
+  "frame_rate_hz": 240,
   "epochs": [
-    { "type": "stripes", "duration_s": 300, "params": { "centers_deg": [90, 270], "width_deg": 15 } },
+    { "type": "stripes", "duration_s": 10, "params": { "centers_deg": [90, 270], "width_deg": 15 } },
     {
       "type": "grating",
       "duration_s": 120,
       "params": { "period_deg": 45, "speed_deg_s": 30, "direction": "ccw", "waveform": "sine",
-                  "rgb_a": [0, 255, 0], "rgb_b": [0, 0, 0] }
+                  "rgb_a": [0, 255, 0], "rgb_b": [0, 255, 0] }
     }
   ]
 }

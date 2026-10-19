@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.9.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:bur="clr-namespace:Buridan.Bonsai;assembly=Buridan.Bonsai"
+                 xmlns:p1="clr-namespace:Buridan.Bonsai;assembly=Buridan.Bonsai"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:gui="clr-namespace:Bonsai.Gui;assembly=Bonsai.Gui"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
-  <Description>Control system for the Buridan arena: LED ring protocols on the Raspberry Pi, camera feed, thresholding, tracking and recording. See the README note inside the workflow.</Description>
   <Workflow>
     <Nodes>
       <Expression xsi:type="Annotation">
@@ -41,74 +40,22 @@ Expand *2. Protocol editor > Protocol* in the settings grid, set its name and ep
 The three buttons show the panel test pattern, blank the ring, or restart buridan_server on the Pi over SSH (with the user name and password).]]></Text>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Host" DisplayName="Pi host" Category="3. Pi connection" Description="Host name or IP address of the Raspberry Pi." />
-        <Property Name="Username" DisplayName="Pi user name" Category="3. Pi connection" Description="User name for SSH login on the Pi (default: buridan)." />
-        <Property Name="Password" DisplayName="Pi password" Category="3. Pi connection" Description="Password for SSH login on the Pi (default: buridan)." />
-        <Property Name="HostKeyFingerprint" DisplayName="Pi host key (optional)" Category="3. Pi connection" Description="Optional SHA256 fingerprint of the Pi's SSH host key. When set, SSH refuses a machine with a different key." />
+        <Property Name="Host" DisplayName="Pi host" Description="Host name or IP address of the Raspberry Pi." Category="3. Pi connection" />
+        <Property Name="Username" DisplayName="Pi user name" Description="User name for SSH login on the Pi (default: buridan)." Category="3. Pi connection" />
+        <Property Name="Password" DisplayName="Pi password" Description="Password for SSH login on the Pi (default: buridan)." Category="3. Pi connection" />
+        <Property Name="HostKeyFingerprint" DisplayName="Pi host key (optional)" Description="Optional SHA256 fingerprint of the Pi's SSH host key. When set, SSH refuses a machine with a different key." Category="3. Pi connection" />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:CreatePiConnection">
-          <bur:Name>Arena</bur:Name>
-          <bur:Host>raspberrypi.local</bur:Host>
-          <bur:Username>buridan</bur:Username>
-          <bur:Password>buridan</bur:Password>
-          <bur:HostKeyFingerprint />
-          <bur:CommandPort>5555</bur:CommandPort>
-          <bur:FramePort>5556</bur:FramePort>
-          <bur:StatusPort>5557</bur:StatusPort>
-          <bur:ReplyTimeoutMilliseconds>2000</bur:ReplyTimeoutMilliseconds>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:MonitorPiConnection">
-          <bur:Connection>Arena</bur:Connection>
-          <bur:Interval>PT1S</bur:Interval>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="gui:ButtonBuilder">
-        <gui:Name>TestPatternButton</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:Text>Show test pattern</gui:Text>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:SetPiMode">
-          <bur:Connection>Arena</bur:Connection>
-          <bur:Mode>TestPattern</bur:Mode>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ToText" />
-      </Expression>
-      <Expression xsi:type="gui:ButtonBuilder">
-        <gui:Name>BlankButton</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:Text>Blank ring</gui:Text>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:StopPi">
-          <bur:Connection>Arena</bur:Connection>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ToText" />
-      </Expression>
-      <Expression xsi:type="gui:ButtonBuilder">
-        <gui:Name>RestartButton</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:Text>Restart Pi server</gui:Text>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:RestartPiServer">
-          <bur:Connection>Arena</bur:Connection>
-          <bur:ServiceName>buridan-server</bur:ServiceName>
-          <bur:TimeoutSeconds>15</bur:TimeoutSeconds>
+        <Combinator xsi:type="p1:CreatePiConnection">
+          <p1:Name>Arena</p1:Name>
+          <p1:Host>10.54.6.117</p1:Host>
+          <p1:Username>buridan</p1:Username>
+          <p1:Password>buridan</p1:Password>
+          <p1:HostKeyFingerprint />
+          <p1:CommandPort>5555</p1:CommandPort>
+          <p1:FramePort>5556</p1:FramePort>
+          <p1:StatusPort>5557</p1:StatusPort>
+          <p1:ReplyTimeoutMilliseconds>2000</p1:ReplyTimeoutMilliseconds>
         </Combinator>
       </Expression>
       <Expression xsi:type="Annotation">
@@ -125,7 +72,7 @@ The threshold value is set with the slider in the window. If the animal appears 
 The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinaryRegion) and the largest white region (the animal) is written to tracking.csv.]]></Text>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Index" DisplayName="Camera index" Category="4. Camera" Description="Index of the USB camera (0 = first camera)." />
+        <Property Name="Index" DisplayName="Camera index" Description="Index of the USB camera (0 = first camera)." Category="4. Camera" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:CameraCapture">
@@ -133,15 +80,173 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
           <cv:CaptureProperties />
         </Combinator>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:SessionVideoWriter">
-          <bur:FrameRate>30</bur:FrameRate>
-          <bur:FourCC>FMP4</bur:FourCC>
+        <Combinator xsi:type="p1:SessionVideoWriter">
+          <p1:FrameRate>30</p1:FrameRate>
+          <p1:FourCC>FMP4</p1:FourCC>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Grayscale" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CropPolygon">
+          <cv:Regions>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>422</cv:X>
+                <cv:Y>266</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>420</cv:X>
+                <cv:Y>287</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>415</cv:X>
+                <cv:Y>308</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>406</cv:X>
+                <cv:Y>327</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>394</cv:X>
+                <cv:Y>344</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>379</cv:X>
+                <cv:Y>359</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>362</cv:X>
+                <cv:Y>372</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>342</cv:X>
+                <cv:Y>381</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>322</cv:X>
+                <cv:Y>386</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>301</cv:X>
+                <cv:Y>388</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>280</cv:X>
+                <cv:Y>386</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>260</cv:X>
+                <cv:Y>381</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>241</cv:X>
+                <cv:Y>372</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>223</cv:X>
+                <cv:Y>359</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>208</cv:X>
+                <cv:Y>344</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>196</cv:X>
+                <cv:Y>327</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>187</cv:X>
+                <cv:Y>308</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>182</cv:X>
+                <cv:Y>287</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>180</cv:X>
+                <cv:Y>266</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>182</cv:X>
+                <cv:Y>245</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>187</cv:X>
+                <cv:Y>224</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>196</cv:X>
+                <cv:Y>205</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>208</cv:X>
+                <cv:Y>188</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>223</cv:X>
+                <cv:Y>173</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>240</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>260</cv:X>
+                <cv:Y>151</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>280</cv:X>
+                <cv:Y>146</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>301</cv:X>
+                <cv:Y>144</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>322</cv:X>
+                <cv:Y>146</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>342</cv:X>
+                <cv:Y>151</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>361</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>379</cv:X>
+                <cv:Y>173</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>394</cv:X>
+                <cv:Y>188</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>406</cv:X>
+                <cv:Y>205</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>415</cv:X>
+                <cv:Y>224</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>420</cv:X>
+                <cv:Y>245</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+          </cv:Regions>
+          <cv:MaskType>ToZero</cv:MaskType>
+          <cv:FillValue>
+            <cv:Val0>255</cv:Val0>
+            <cv:Val1>0</cv:Val1>
+            <cv:Val2>0</cv:Val2>
+            <cv:Val3>0</cv:Val3>
+          </cv:FillValue>
+        </Combinator>
       </Expression>
       <Expression xsi:type="gui:SliderBuilder">
         <gui:Name>ThresholdSlider</gui:Name>
@@ -150,25 +255,23 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
         <gui:Minimum>0</gui:Minimum>
         <gui:Maximum>255</gui:Maximum>
         <gui:DecimalPlaces>0</gui:DecimalPlaces>
-        <gui:Value>100</gui:Value>
+        <gui:Value>117</gui:Value>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="PropertyMapping">
         <PropertyMappings>
           <Property Name="ThresholdValue" />
         </PropertyMappings>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="ThresholdType" DisplayName="Threshold type" Category="4. Camera" Description="BinaryInv: dark animal on a bright floor becomes white. Binary: bright animal on a dark floor becomes white." />
+        <Property Name="ThresholdType" DisplayName="Threshold type" Description="BinaryInv: dark animal on a bright floor becomes white. Binary: bright animal on a dark floor becomes white." Category="4. Camera" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
-          <cv:ThresholdValue>100</cv:ThresholdValue>
+          <cv:ThresholdValue>117</cv:ThresholdValue>
           <cv:MaxValue>255</cv:MaxValue>
           <cv:ThresholdType>BinaryInv</cv:ThresholdType>
         </Combinator>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:FindContours">
           <cv:Mode>External</cv:Mode>
@@ -188,31 +291,7 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
         <Combinator xsi:type="cv:LargestBinaryRegion" />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:SessionTrackingWriter" />
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Name>Experiment</Name>
-        <Text><![CDATA[**Experiment**
-
-The drop-down list shows the protocol files in the protocols folder. It is filled when the workflow starts, after every protocol save, and when *Refresh protocol list* is pressed. The selected name is kept in the *SelectedProtocol* subject.
-
-**Start experiment** passes the selected protocol name to *StartExperiment*, which:
-1. creates a session folder in the data folder (settings grid, *1. Experiment*),
-2. starts recording video, tracking and Pi messages,
-3. sends the protocol to the Pi and starts it.
-
-**Stop experiment** stops the Pi and closes the session. The session is also closed automatically when the Pi reports *protocol_end*.
-
-*ReceivePiMessages* receives the status and events published by the Pi; *SessionPiMessageWriter* records them into pi_messages.csv.]]></Text>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="DataFolder" DisplayName="Data folder" Category="1. Experiment" Description="Folder on this PC where experiment data is saved. A sub-folder is created for every run." />
-        <Property Name="AnimalId" DisplayName="Animal ID" Category="1. Experiment" Description="Identifier of the animal, used in the session folder name." />
-        <Property Name="Experimenter" DisplayName="Experimenter" Category="1. Experiment" Description="Name of the experimenter (saved in session.json)." />
-        <Property Name="Notes" DisplayName="Notes" Category="1. Experiment" Description="Free-text notes about this run (saved in session.json)." />
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="ProtocolFolder" DisplayName="Protocol folder" Category="1. Experiment" Description="Folder on this PC containing the protocol files." />
+        <Combinator xsi:type="p1:SessionTrackingWriter" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
@@ -220,7 +299,7 @@ The drop-down list shows the protocol files in the protocols folder. It is fille
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ToText" />
+        <Combinator xsi:type="p1:ToText" />
       </Expression>
       <Expression xsi:type="gui:ButtonBuilder">
         <gui:Name>RefreshButton</gui:Name>
@@ -228,13 +307,63 @@ The drop-down list shows the protocol files in the protocols folder. It is fille
         <gui:Visible>true</gui:Visible>
         <gui:Text>Refresh protocol list</gui:Text>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:ButtonBuilder">
+        <gui:Name>SaveProtocolButton</gui:Name>
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text>Save protocol</gui:Text>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Protocol" DisplayName="Protocol" Description="The protocol being edited. Expand it to set the name, frame rate and epochs." Category="2. Protocol editor" />
+        <Property Name="UploadToPi" DisplayName="Also save on the Pi" Description="If true, saved protocols are also stored on the Raspberry Pi." Category="2. Protocol editor" />
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="ProtocolFolder" DisplayName="Protocol folder" Description="Folder on this PC containing the protocol files." Category="1. Experiment" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:SaveProtocol">
+          <p1:Protocol>
+            <p1:Name>new_protocol</p1:Name>
+            <p1:FrameRateHz>60</p1:FrameRateHz>
+            <p1:Epochs>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+            </p1:Epochs>
+          </p1:Protocol>
+          <p1:ProtocolFolder>protocols</p1:ProtocolFolder>
+          <p1:UploadToPi>true</p1:UploadToPi>
+          <p1:Connection>Arena</p1:Connection>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ToText" />
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Merge" />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ListProtocolFiles">
-          <bur:ProtocolFolder>protocols</bur:ProtocolFolder>
+        <Combinator xsi:type="p1:ListProtocolFiles">
+          <p1:ProtocolFolder>protocols</p1:ProtocolFolder>
         </Combinator>
       </Expression>
       <Expression xsi:type="gui:ComboBoxDataSourceBuilder">
@@ -243,126 +372,18 @@ The drop-down list shows the protocol files in the protocols folder. It is fille
         <gui:Visible>true</gui:Visible>
         <gui:DisplayMember />
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>SelectedProtocol</Name>
       </Expression>
-      <Expression xsi:type="gui:ButtonBuilder">
-        <gui:Name>StartButton</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:Text>Start experiment</gui:Text>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="SubscribeSubject">
-        <Name>SelectedProtocol</Name>
-      </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:WithLatestFrom" />
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Item2</Selector>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:StartExperiment">
-          <bur:DataFolder>data</bur:DataFolder>
-          <bur:AnimalId>fly01</bur:AnimalId>
-          <bur:Experimenter />
-          <bur:Notes />
-          <bur:ProtocolFolder>protocols</bur:ProtocolFolder>
-          <bur:Connection>Arena</bur:Connection>
+        <Combinator xsi:type="p1:ReceivePiMessages">
+          <p1:Connection>Arena</p1:Connection>
+          <p1:IncludeStatus>true</p1:IncludeStatus>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ToText" />
+        <Combinator xsi:type="p1:SessionPiMessageWriter" />
       </Expression>
-      <Expression xsi:type="gui:ButtonBuilder">
-        <gui:Name>StopButton</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:Text>Stop experiment</gui:Text>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:StopExperiment">
-          <bur:SendStopToPi>true</bur:SendStopToPi>
-          <bur:Reason>stop button</bur:Reason>
-          <bur:Connection>Arena</bur:Connection>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ToText" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ReceivePiMessages">
-          <bur:Connection>Arena</bur:Connection>
-          <bur:IncludeStatus>true</bur:IncludeStatus>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:SessionPiMessageWriter" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:FilterPiEvent">
-          <bur:EventName>protocol_end</bur:EventName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:StopExperiment">
-          <bur:SendStopToPi>false</bur:SendStopToPi>
-          <bur:Reason>protocol_end</bur:Reason>
-          <bur:Connection>Arena</bur:Connection>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ToText" />
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Name>Protocol editor</Name>
-        <Text><![CDATA[**Protocol editor**
-
-The protocol being edited is the *Protocol* property of *SaveProtocol*, shown in the settings grid (category *2. Protocol editor*). Expand it to set the name, the frame rate and the list of epochs (click "..." next to *Epochs* to add, remove or edit epochs; each epoch has a stimulus type, a duration and the parameters of each stimulus type).
-
-**Save protocol** checks the protocol, saves it as <name>.json in the protocols folder of this PC, and uploads it to the Pi. The result appears in the log, and the protocol list is refreshed.]]></Text>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Protocol" DisplayName="Protocol" Category="2. Protocol editor" Description="The protocol being edited. Expand it to set the name, frame rate and epochs." />
-        <Property Name="UploadToPi" DisplayName="Also save on the Pi" Category="2. Protocol editor" Description="If true, saved protocols are also stored on the Raspberry Pi." />
-      </Expression>
-      <Expression xsi:type="gui:ButtonBuilder">
-        <gui:Name>SaveProtocolButton</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:Text>Save protocol</gui:Text>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:SaveProtocol">
-          <bur:ProtocolFolder>protocols</bur:ProtocolFolder>
-          <bur:UploadToPi>true</bur:UploadToPi>
-          <bur:Connection>Arena</bur:Connection>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="bur:ToText" />
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Name>Log and window layout</Name>
-        <Text><![CDATA[**Log and window layout**
-
-Every result (experiment start/stop, protocol save, Pi commands, SSH restart) is turned into a line of text and merged into the log shown at the bottom right of the window.
-
-The window is built from nested table layouts:
-- *MainWindow*: left = SidePanel, right = RightPanel
-- *SidePanel* (top to bottom): settings grid, protocol list, run buttons, protocol buttons, Pi buttons, threshold slider, Pi status
-- *RightPanel*: VideoPanel (raw | binary camera images) above the log
-
-Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Merge" />
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:PropertyGridBuilder">
         <gui:Name>SettingsGrid</gui:Name>
         <gui:Enabled>true</gui:Enabled>
@@ -370,6 +391,21 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
         <gui:HelpVisible>true</gui:HelpVisible>
         <gui:ToolbarVisible>false</gui:ToolbarVisible>
         <gui:AutoRefresh>false</gui:AutoRefresh>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:ButtonBuilder">
+        <gui:Name>StartButton</gui:Name>
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text>Start experiment</gui:Text>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:ButtonBuilder">
+        <gui:Name>StopButton</gui:Name>
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text>Stop experiment</gui:Text>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
@@ -397,6 +433,8 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
         <gui:CellSpans />
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
         <gui:Name>ProtocolButtons</gui:Name>
         <gui:Enabled>true</gui:Enabled>
@@ -420,6 +458,27 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
           </gui:RowStyle>
         </gui:RowStyles>
         <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:ButtonBuilder">
+        <gui:Name>TestPatternButton</gui:Name>
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text>Show test pattern</gui:Text>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:ButtonBuilder">
+        <gui:Name>BlankButton</gui:Name>
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text>Blank ring</gui:Text>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:ButtonBuilder">
+        <gui:Name>RestartButton</gui:Name>
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text>Restart Pi server</gui:Text>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
@@ -449,6 +508,14 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
           </gui:RowStyle>
         </gui:RowStyles>
         <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:MonitorPiConnection">
+          <p1:Connection>Arena</p1:Connection>
+          <p1:Interval />
+        </Combinator>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
@@ -496,6 +563,8 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
         <gui:CellSpans />
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
         <gui:Name>VideoPanel</gui:Name>
         <gui:Enabled>true</gui:Enabled>
@@ -519,6 +588,87 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
           </gui:RowStyle>
         </gui:RowStyles>
         <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>SelectedProtocol</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WithLatestFrom" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item2</Selector>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="DataFolder" DisplayName="Data folder" Description="Folder on this PC where experiment data is saved. A sub-folder is created for every run." Category="1. Experiment" />
+        <Property Name="AnimalId" DisplayName="Animal ID" Description="Identifier of the animal, used in the session folder name." Category="1. Experiment" />
+        <Property Name="Experimenter" DisplayName="Experimenter" Description="Name of the experimenter (saved in session.json)." Category="1. Experiment" />
+        <Property Name="Notes" DisplayName="Notes" Description="Free-text notes about this run (saved in session.json)." Category="1. Experiment" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:StartExperiment">
+          <p1:DataFolder>data</p1:DataFolder>
+          <p1:AnimalId>fly01</p1:AnimalId>
+          <p1:Experimenter />
+          <p1:Notes />
+          <p1:ProtocolFolder>protocols</p1:ProtocolFolder>
+          <p1:Connection>Arena</p1:Connection>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ToText" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:StopExperiment">
+          <p1:SendStopToPi>true</p1:SendStopToPi>
+          <p1:Reason>stop button</p1:Reason>
+          <p1:Connection>Arena</p1:Connection>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ToText" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:FilterPiEvent">
+          <p1:EventName>protocol_end</p1:EventName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:StopExperiment">
+          <p1:SendStopToPi>false</p1:SendStopToPi>
+          <p1:Reason>protocol_end</p1:Reason>
+          <p1:Connection>Arena</p1:Connection>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ToText" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:SetPiMode">
+          <p1:Connection>Arena</p1:Connection>
+          <p1:Mode>TestPattern</p1:Mode>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ToText" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:StopPi">
+          <p1:Connection>Arena</p1:Connection>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ToText" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:RestartPiServer">
+          <p1:Connection>Arena</p1:Connection>
+          <p1:ServiceName>buridan-server</p1:ServiceName>
+          <p1:TimeoutSeconds>15</p1:TimeoutSeconds>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
@@ -570,97 +720,134 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
         </gui:RowStyles>
         <gui:CellSpans />
       </Expression>
+      <Expression xsi:type="Annotation">
+        <Name>Experiment</Name>
+        <Text><![CDATA[**Experiment**
+
+The drop-down list shows the protocol files in the protocols folder. It is filled when the workflow starts, after every protocol save, and when *Refresh protocol list* is pressed. The selected name is kept in the *SelectedProtocol* subject.
+
+**Start experiment** passes the selected protocol name to *StartExperiment*, which:
+1. creates a session folder in the data folder (settings grid, *1. Experiment*),
+2. starts recording video, tracking and Pi messages,
+3. sends the protocol to the Pi and starts it.
+
+**Stop experiment** stops the Pi and closes the session. The session is also closed automatically when the Pi reports *protocol_end*.
+
+*ReceivePiMessages* receives the status and events published by the Pi; *SessionPiMessageWriter* records them into pi_messages.csv.]]></Text>
+      </Expression>
+      <Expression xsi:type="Annotation">
+        <Name>Protocol editor</Name>
+        <Text><![CDATA[**Protocol editor**
+
+The protocol being edited is the *Protocol* property of *SaveProtocol*, shown in the settings grid (category *2. Protocol editor*). Expand it to set the name, the frame rate and the list of epochs (click "..." next to *Epochs* to add, remove or edit epochs; each epoch has a stimulus type, a duration and the parameters of each stimulus type).
+
+**Save protocol** checks the protocol, saves it as <name>.json in the protocols folder of this PC, and uploads it to the Pi. The result appears in the log, and the protocol list is refreshed.]]></Text>
+      </Expression>
+      <Expression xsi:type="Annotation">
+        <Name>Log and window layout</Name>
+        <Text><![CDATA[**Log and window layout**
+
+Every result (experiment start/stop, protocol save, Pi commands, SSH restart) is turned into a line of text and merged into the log shown at the bottom right of the window.
+
+The window is built from nested table layouts:
+- *MainWindow*: left = SidePanel, right = RightPanel
+- *SidePanel* (top to bottom): settings grid, protocol list, run buttons, protocol buttons, Pi buttons, threshold slider, Pi status
+- *RightPanel*: VideoPanel (raw | binary camera images) above the log
+
+Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="4" To="5" Label="Source1" />
-      <Edge From="5" To="78" Label="Source7" />
+      <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="6" To="8" Label="Source1" />
-      <Edge From="7" To="76" Label="Source1" />
+      <Edge From="6" To="58" Label="Source1" />
       <Edge From="8" To="9" Label="Source1" />
-      <Edge From="9" To="68" Label="Source5" />
+      <Edge From="9" To="13" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="10" To="12" Label="Source1" />
-      <Edge From="11" To="76" Label="Source2" />
-      <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="68" Label="Source6" />
+      <Edge From="10" To="53" Label="Source1" />
+      <Edge From="11" To="13" Label="Source2" />
+      <Edge From="12" To="13" Label="Source3" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="13" To="59" Label="Source1" />
       <Edge From="14" To="15" Label="Source1" />
-      <Edge From="14" To="16" Label="Source1" />
-      <Edge From="15" To="76" Label="Source3" />
-      <Edge From="16" To="68" Label="Source7" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
-      <Edge From="19" To="20" Label="Source1" />
-      <Edge From="19" To="21" Label="Source1" />
-      <Edge From="19" To="22" Label="Source1" />
-      <Edge From="20" To="80" Label="Source1" />
-      <Edge From="22" To="27" Label="Source1" />
-      <Edge From="23" To="24" Label="Source1" />
-      <Edge From="23" To="25" Label="Source1" />
-      <Edge From="24" To="78" Label="Source6" />
-      <Edge From="25" To="27" Label="Source2" />
-      <Edge From="26" To="27" Label="Source3" />
+      <Edge From="19" To="26" Label="Source1" />
+      <Edge From="20" To="26" Label="Source2" />
+      <Edge From="20" To="42" Label="Source1" />
+      <Edge From="21" To="24" Label="Source1" />
+      <Edge From="21" To="41" Label="Source1" />
+      <Edge From="22" To="24" Label="Source2" />
+      <Edge From="23" To="24" Label="Source3" />
+      <Edge From="23" To="27" Label="Source2" />
+      <Edge From="23" To="66" Label="Source3" />
+      <Edge From="24" To="25" Label="Source1" />
+      <Edge From="25" To="26" Label="Source3" />
+      <Edge From="25" To="78" Label="Source4" />
+      <Edge From="26" To="27" Label="Source1" />
       <Edge From="27" To="28" Label="Source1" />
-      <Edge From="27" To="29" Label="Source1" />
-      <Edge From="28" To="80" Label="Source2" />
-      <Edge From="29" To="30" Label="Source1" />
+      <Edge From="28" To="29" Label="Source1" />
+      <Edge From="28" To="34" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
-      <Edge From="31" To="32" Label="Source1" />
-      <Edge From="34" To="50" Label="Source2" />
-      <Edge From="35" To="41" Label="Source2" />
-      <Edge From="35" To="50" Label="Source3" />
-      <Edge From="35" To="65" Label="Source3" />
-      <Edge From="36" To="37" Label="Source1" />
-      <Edge From="37" To="40" Label="Source1" />
-      <Edge From="38" To="39" Label="Source1" />
-      <Edge From="38" To="40" Label="Source2" />
-      <Edge From="39" To="74" Label="Source2" />
-      <Edge From="40" To="41" Label="Source1" />
-      <Edge From="41" To="42" Label="Source1" />
-      <Edge From="42" To="43" Label="Source1" />
-      <Edge From="42" To="44" Label="Source1" />
-      <Edge From="43" To="78" Label="Source2" />
+      <Edge From="30" To="70" Label="Source1" />
+      <Edge From="32" To="33" Label="Source1" />
+      <Edge From="33" To="56" Label="Source1" />
+      <Edge From="34" To="56" Label="Source2" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="35" To="63" Label="Source1" />
+      <Edge From="36" To="39" Label="Source1" />
+      <Edge From="37" To="38" Label="Source1" />
+      <Edge From="37" To="68" Label="Source1" />
+      <Edge From="38" To="39" Label="Source2" />
+      <Edge From="39" To="40" Label="Source1" />
+      <Edge From="40" To="56" Label="Source3" />
+      <Edge From="41" To="43" Label="Source1" />
+      <Edge From="42" To="43" Label="Source2" />
+      <Edge From="43" To="44" Label="Source1" />
+      <Edge From="44" To="56" Label="Source4" />
       <Edge From="45" To="46" Label="Source1" />
-      <Edge From="45" To="48" Label="Source1" />
-      <Edge From="46" To="72" Label="Source1" />
-      <Edge From="47" To="48" Label="Source2" />
-      <Edge From="48" To="49" Label="Source1" />
+      <Edge From="45" To="73" Label="Source1" />
+      <Edge From="46" To="51" Label="Source1" />
+      <Edge From="47" To="48" Label="Source1" />
+      <Edge From="47" To="75" Label="Source1" />
+      <Edge From="48" To="51" Label="Source2" />
       <Edge From="49" To="50" Label="Source1" />
-      <Edge From="50" To="51" Label="Source1" />
-      <Edge From="51" To="68" Label="Source1" />
-      <Edge From="52" To="53" Label="Source1" />
-      <Edge From="52" To="54" Label="Source1" />
-      <Edge From="53" To="72" Label="Source2" />
+      <Edge From="49" To="77" Label="Source1" />
+      <Edge From="50" To="51" Label="Source3" />
+      <Edge From="51" To="52" Label="Source1" />
+      <Edge From="52" To="56" Label="Source5" />
+      <Edge From="53" To="56" Label="Source6" />
       <Edge From="54" To="55" Label="Source1" />
-      <Edge From="55" To="68" Label="Source2" />
+      <Edge From="55" To="56" Label="Source7" />
       <Edge From="56" To="57" Label="Source1" />
-      <Edge From="56" To="58" Label="Source1" />
-      <Edge From="58" To="59" Label="Source1" />
-      <Edge From="59" To="60" Label="Source1" />
-      <Edge From="60" To="68" Label="Source3" />
-      <Edge From="62" To="65" Label="Source2" />
+      <Edge From="57" To="82" Label="Source1" />
+      <Edge From="58" To="60" Label="Source1" />
+      <Edge From="59" To="60" Label="Source2" />
+      <Edge From="60" To="61" Label="Source1" />
+      <Edge From="61" To="80" Label="Source1" />
+      <Edge From="62" To="63" Label="Source2" />
       <Edge From="63" To="64" Label="Source1" />
-      <Edge From="63" To="65" Label="Source1" />
-      <Edge From="64" To="74" Label="Source1" />
-      <Edge From="65" To="66" Label="Source1" />
-      <Edge From="66" To="40" Label="Source3" />
-      <Edge From="66" To="68" Label="Source4" />
+      <Edge From="64" To="66" Label="Source1" />
+      <Edge From="65" To="66" Label="Source2" />
+      <Edge From="66" To="67" Label="Source1" />
+      <Edge From="67" To="78" Label="Source1" />
       <Edge From="68" To="69" Label="Source1" />
-      <Edge From="69" To="82" Label="Source2" />
+      <Edge From="69" To="78" Label="Source2" />
       <Edge From="70" To="71" Label="Source1" />
-      <Edge From="71" To="78" Label="Source1" />
-      <Edge From="72" To="73" Label="Source1" />
-      <Edge From="73" To="78" Label="Source3" />
-      <Edge From="74" To="75" Label="Source1" />
-      <Edge From="75" To="78" Label="Source4" />
-      <Edge From="76" To="77" Label="Source1" />
-      <Edge From="77" To="78" Label="Source5" />
+      <Edge From="71" To="72" Label="Source1" />
+      <Edge From="72" To="78" Label="Source3" />
+      <Edge From="73" To="74" Label="Source1" />
+      <Edge From="74" To="78" Label="Source5" />
+      <Edge From="75" To="76" Label="Source1" />
+      <Edge From="76" To="78" Label="Source6" />
+      <Edge From="77" To="78" Label="Source7" />
       <Edge From="78" To="79" Label="Source1" />
-      <Edge From="79" To="84" Label="Source1" />
+      <Edge From="79" To="80" Label="Source2" />
       <Edge From="80" To="81" Label="Source1" />
-      <Edge From="81" To="82" Label="Source1" />
-      <Edge From="82" To="83" Label="Source1" />
-      <Edge From="83" To="84" Label="Source2" />
+      <Edge From="81" To="82" Label="Source2" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
