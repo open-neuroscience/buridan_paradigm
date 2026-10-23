@@ -137,6 +137,40 @@ namespace Buridan.Bonsai.Tests
                   "duty cycle above 1 is rejected");
             Check(Throws(() => ProtocolJson.Deserialize("{\"name\":\"x\",\"epochs\":[{\"type\":\"spiral\",\"duration_s\":1}]}")),
                   "unknown stimulus type is rejected");
+
+            // Bar regions: two opposing regions with independent bar counts.
+            EpochDefinition bars = new EpochDefinition();
+            bars.Type = StimulusType.BarRegions;
+            bars.DurationSeconds = 4;
+            bars.RegionBBars = 6;
+            Check(bars.RegionALayout == "3 bars of 10 deg, gaps 30 deg", "region A layout: " + bars.RegionALayout);
+            Check(bars.RegionBLayout == "6 bars of 4.29 deg, gaps 12.86 deg", "region B layout: " + bars.RegionBLayout);
+            ProtocolDefinition barsProtocol = new ProtocolDefinition();
+            barsProtocol.Name = "bars_test";
+            barsProtocol.Epochs.Clear();
+            barsProtocol.Epochs.Add(bars);
+            barsProtocol.Validate();
+            JObject barsDocument = JObject.Parse(ProtocolJson.Serialize(barsProtocol));
+            JToken barsParams = barsDocument["epochs"][0]["params"];
+            Check((string)barsDocument["epochs"][0]["type"] == "bar_regions", "stimulus type written as 'bar_regions'");
+            Check((int)barsParams["region_b_bars"] == 6 && (double)barsParams["region_a_bar_fraction"] == 0.25,
+                  "bar region parameters written");
+            Check(ProtocolJson.Serialize(barsProtocol.Copy()) == ProtocolJson.Serialize(barsProtocol), "bar regions JSON round trip is lossless");
+            string minimalBars = "{\"name\":\"b\",\"epochs\":[{\"type\":\"bar_regions\",\"duration_s\":1}]}";
+            EpochDefinition parsedBars = ProtocolJson.Deserialize(minimalBars).Epochs[0];
+            Check(parsedBars.RegionAWidthDeg == 90 && parsedBars.RegionBBars == 3 && parsedBars.RegionBBarFraction == 0.25,
+                  "missing bar region parameters take the Pi defaults");
+            Check(Throws(() => { EpochDefinition bad = new EpochDefinition(); bad.Type = StimulusType.BarRegions; bad.RegionAWidthDeg = 200; bad.RegionBWidthDeg = 170; bad.Validate(); }),
+                  "overlapping bar regions are rejected");
+            Check(Throws(() => { EpochDefinition bad = new EpochDefinition(); bad.Type = StimulusType.BarRegions; bad.RegionAWidthDeg = 20; bad.RegionABars = 20; bad.RegionABarFraction = 0.5; bad.Validate(); }),
+                  "bars narrower than one pixel are rejected");
+            Check(Throws(() => { EpochDefinition bad = new EpochDefinition(); bad.Type = StimulusType.BarRegions; bad.RegionBBarFraction = 0; bad.Validate(); }),
+                  "bar fraction 0 is rejected");
+            EpochDefinition control = new EpochDefinition();
+            control.Type = StimulusType.BarRegions;
+            control.RegionBBars = 0;
+            control.Validate();
+            Check(control.RegionBLayout == "no bars (background only)", "0 bars is a valid control region");
         }
 
         static void TestPiProtocolFiles(string piProtocolFolder, string workFolder)
@@ -193,6 +227,12 @@ namespace Buridan.Bonsai.Tests
                 second.Type = StimulusType.Grating;
                 second.DurationSeconds = 0.6;
                 editor.Protocol.Epochs.Add(second);
+                // The Pi must accept bar regions exactly as the editor writes them.
+                EpochDefinition third = new EpochDefinition();
+                third.Type = StimulusType.BarRegions;
+                third.DurationSeconds = 0.6;
+                third.RegionBBars = 6;
+                editor.Protocol.Epochs.Add(third);
                 ProtocolSaveResult saveResult = Wait(editor.Process(Observable.Return(1)));
                 Check(saveResult.Ok, "SaveProtocol saves on PC and Pi: " + saveResult);
 

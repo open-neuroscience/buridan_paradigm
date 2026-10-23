@@ -5,6 +5,10 @@
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:gui="clr-namespace:Bonsai.Gui;assembly=Bonsai.Gui"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:vid="clr-namespace:Bonsai.Video;assembly=Bonsai.Video"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -48,7 +52,7 @@ The three buttons show the panel test pattern, blank the ring, or restart burida
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:CreatePiConnection">
           <p1:Name>Arena</p1:Name>
-          <p1:Host>10.54.6.117</p1:Host>
+          <p1:Host>192.168.50.2</p1:Host>
           <p1:Username>buridan</p1:Username>
           <p1:Password>buridan</p1:Password>
           <p1:HostKeyFingerprint />
@@ -81,170 +85,170 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Grayscale" />
+      </Expression>
+      <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:SessionVideoWriter">
           <p1:FrameRate>30</p1:FrameRate>
           <p1:FourCC>FMP4</p1:FourCC>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:Grayscale" />
-      </Expression>
-      <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:CropPolygon">
           <cv:Regions>
             <cv:ArrayOfPoint>
               <cv:Point>
-                <cv:X>422</cv:X>
-                <cv:Y>266</cv:Y>
+                <cv:X>404</cv:X>
+                <cv:Y>258</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>420</cv:X>
-                <cv:Y>287</cv:Y>
+                <cv:X>402</cv:X>
+                <cv:Y>279</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>415</cv:X>
-                <cv:Y>308</cv:Y>
+                <cv:X>397</cv:X>
+                <cv:Y>299</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>406</cv:X>
-                <cv:Y>327</cv:Y>
+                <cv:X>389</cv:X>
+                <cv:Y>317</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>394</cv:X>
-                <cv:Y>344</cv:Y>
+                <cv:X>377</cv:X>
+                <cv:Y>334</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>379</cv:X>
-                <cv:Y>359</cv:Y>
+                <cv:X>363</cv:X>
+                <cv:Y>349</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>362</cv:X>
-                <cv:Y>372</cv:Y>
+                <cv:X>346</cv:X>
+                <cv:Y>361</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>342</cv:X>
-                <cv:Y>381</cv:Y>
+                <cv:X>328</cv:X>
+                <cv:Y>370</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>322</cv:X>
-                <cv:Y>386</cv:Y>
+                <cv:X>309</cv:X>
+                <cv:Y>375</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>301</cv:X>
-                <cv:Y>388</cv:Y>
+                <cv:X>289</cv:X>
+                <cv:Y>377</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>280</cv:X>
-                <cv:Y>386</cv:Y>
+                <cv:X>269</cv:X>
+                <cv:Y>375</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>260</cv:X>
-                <cv:Y>381</cv:Y>
+                <cv:X>250</cv:X>
+                <cv:Y>370</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>241</cv:X>
-                <cv:Y>372</cv:Y>
+                <cv:X>232</cv:X>
+                <cv:Y>361</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>223</cv:X>
-                <cv:Y>359</cv:Y>
+                <cv:X>215</cv:X>
+                <cv:Y>349</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>208</cv:X>
-                <cv:Y>344</cv:Y>
+                <cv:X>201</cv:X>
+                <cv:Y>334</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>196</cv:X>
-                <cv:Y>327</cv:Y>
+                <cv:X>189</cv:X>
+                <cv:Y>318</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>187</cv:X>
-                <cv:Y>308</cv:Y>
+                <cv:X>181</cv:X>
+                <cv:Y>299</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>182</cv:X>
-                <cv:Y>287</cv:Y>
+                <cv:X>176</cv:X>
+                <cv:Y>279</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>180</cv:X>
-                <cv:Y>266</cv:Y>
+                <cv:X>174</cv:X>
+                <cv:Y>258</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>182</cv:X>
-                <cv:Y>245</cv:Y>
+                <cv:X>176</cv:X>
+                <cv:Y>237</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>187</cv:X>
-                <cv:Y>224</cv:Y>
+                <cv:X>181</cv:X>
+                <cv:Y>217</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>196</cv:X>
-                <cv:Y>205</cv:Y>
+                <cv:X>189</cv:X>
+                <cv:Y>199</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>208</cv:X>
-                <cv:Y>188</cv:Y>
+                <cv:X>201</cv:X>
+                <cv:Y>182</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>223</cv:X>
-                <cv:Y>173</cv:Y>
+                <cv:X>215</cv:X>
+                <cv:Y>167</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>240</cv:X>
-                <cv:Y>160</cv:Y>
+                <cv:X>231</cv:X>
+                <cv:Y>155</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>260</cv:X>
-                <cv:Y>151</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>280</cv:X>
+                <cv:X>250</cv:X>
                 <cv:Y>146</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>301</cv:X>
-                <cv:Y>144</cv:Y>
+                <cv:X>269</cv:X>
+                <cv:Y>141</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>322</cv:X>
+                <cv:X>289</cv:X>
+                <cv:Y>139</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>309</cv:X>
+                <cv:Y>141</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>328</cv:X>
                 <cv:Y>146</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>342</cv:X>
-                <cv:Y>151</cv:Y>
+                <cv:X>346</cv:X>
+                <cv:Y>155</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>361</cv:X>
-                <cv:Y>160</cv:Y>
+                <cv:X>363</cv:X>
+                <cv:Y>167</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>379</cv:X>
-                <cv:Y>173</cv:Y>
+                <cv:X>377</cv:X>
+                <cv:Y>182</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>394</cv:X>
-                <cv:Y>188</cv:Y>
+                <cv:X>389</cv:X>
+                <cv:Y>199</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>406</cv:X>
-                <cv:Y>205</cv:Y>
+                <cv:X>397</cv:X>
+                <cv:Y>217</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>415</cv:X>
-                <cv:Y>224</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>420</cv:X>
-                <cv:Y>245</cv:Y>
+                <cv:X>402</cv:X>
+                <cv:Y>237</cv:Y>
               </cv:Point>
             </cv:ArrayOfPoint>
           </cv:Regions>
           <cv:MaskType>ToZero</cv:MaskType>
           <cv:FillValue>
             <cv:Val0>255</cv:Val0>
-            <cv:Val1>0</cv:Val1>
-            <cv:Val2>0</cv:Val2>
-            <cv:Val3>0</cv:Val3>
+            <cv:Val1>255</cv:Val1>
+            <cv:Val2>255</cv:Val2>
+            <cv:Val3>255</cv:Val3>
           </cv:FillValue>
         </Combinator>
       </Expression>
@@ -255,7 +259,7 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
         <gui:Minimum>0</gui:Minimum>
         <gui:Maximum>255</gui:Maximum>
         <gui:DecimalPlaces>0</gui:DecimalPlaces>
-        <gui:Value>117</gui:Value>
+        <gui:Value>139</gui:Value>
       </Expression>
       <Expression xsi:type="PropertyMapping">
         <PropertyMappings>
@@ -267,7 +271,7 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
-          <cv:ThresholdValue>117</cv:ThresholdValue>
+          <cv:ThresholdValue>139</cv:ThresholdValue>
           <cv:MaxValue>255</cv:MaxValue>
           <cv:ThresholdType>BinaryInv</cv:ThresholdType>
         </Combinator>
@@ -280,8 +284,8 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
             <cv:X>0</cv:X>
             <cv:Y>0</cv:Y>
           </cv:Offset>
-          <cv:MinArea>10</cv:MinArea>
-          <cv:MaxArea xsi:nil="true" />
+          <cv:MinArea>0</cv:MinArea>
+          <cv:MaxArea>0</cv:MaxArea>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -342,16 +346,459 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
                 <p1:Waveform>Square</p1:Waveform>
                 <p1:DutyCycle>0.5</p1:DutyCycle>
                 <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
                 <p1:StripeColor>Black</p1:StripeColor>
                 <p1:BackgroundColor>White</p1:BackgroundColor>
                 <p1:ColorA>White</p1:ColorA>
                 <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
+                <p1:BlankColor>Black</p1:BlankColor>
+              </p1:Epoch>
+              <p1:Epoch>
+                <p1:Type>Stripes</p1:Type>
+                <p1:DurationSeconds>60</p1:DurationSeconds>
+                <p1:StripeCentersDeg>
+                  <p1:double>0</p1:double>
+                  <p1:double>180</p1:double>
+                </p1:StripeCentersDeg>
+                <p1:StripeWidthDeg>11.25</p1:StripeWidthDeg>
+                <p1:StripeTopPx>0</p1:StripeTopPx>
+                <p1:StripeBottomPx>63</p1:StripeBottomPx>
+                <p1:PeriodDeg>30</p1:PeriodDeg>
+                <p1:SpeedDegPerSecond>45</p1:SpeedDegPerSecond>
+                <p1:Direction>Clockwise</p1:Direction>
+                <p1:Waveform>Square</p1:Waveform>
+                <p1:DutyCycle>0.5</p1:DutyCycle>
+                <p1:PhaseDeg>0</p1:PhaseDeg>
+                <p1:BarRegionCenterDeg>0</p1:BarRegionCenterDeg>
+                <p1:RegionAWidthDeg>90</p1:RegionAWidthDeg>
+                <p1:RegionABars>3</p1:RegionABars>
+                <p1:RegionABarFraction>0.25</p1:RegionABarFraction>
+                <p1:RegionBWidthDeg>90</p1:RegionBWidthDeg>
+                <p1:RegionBBars>3</p1:RegionBBars>
+                <p1:RegionBBarFraction>0.25</p1:RegionBBarFraction>
+                <p1:StripeColor>Black</p1:StripeColor>
+                <p1:BackgroundColor>White</p1:BackgroundColor>
+                <p1:ColorA>White</p1:ColorA>
+                <p1:ColorB>Black</p1:ColorB>
+                <p1:BarColor>Black</p1:BarColor>
+                <p1:BarBackgroundColor>White</p1:BarBackgroundColor>
                 <p1:BlankColor>Black</p1:BlankColor>
               </p1:Epoch>
             </p1:Epochs>
           </p1:Protocol>
           <p1:ProtocolFolder>protocols</p1:ProtocolFolder>
-          <p1:UploadToPi>true</p1:UploadToPi>
+          <p1:UploadToPi>false</p1:UploadToPi>
           <p1:Connection>Arena</p1:Connection>
         </Combinator>
       </Expression>
@@ -510,84 +957,14 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
         <gui:CellSpans />
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="VisualizerMapping" />
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:MonitorPiConnection">
           <p1:Connection>Arena</p1:Connection>
           <p1:Interval />
         </Combinator>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="gui:TableLayoutPanelBuilder">
-        <gui:Name>SidePanel</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:ColumnCount>1</gui:ColumnCount>
-        <gui:RowCount>7</gui:RowCount>
-        <gui:ColumnStyles>
-          <gui:ColumnStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Width>100</gui:Width>
-          </gui:ColumnStyle>
-        </gui:ColumnStyles>
-        <gui:RowStyles>
-          <gui:RowStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Height>100</gui:Height>
-          </gui:RowStyle>
-          <gui:RowStyle>
-            <gui:SizeType>Absolute</gui:SizeType>
-            <gui:Height>30</gui:Height>
-          </gui:RowStyle>
-          <gui:RowStyle>
-            <gui:SizeType>Absolute</gui:SizeType>
-            <gui:Height>40</gui:Height>
-          </gui:RowStyle>
-          <gui:RowStyle>
-            <gui:SizeType>Absolute</gui:SizeType>
-            <gui:Height>36</gui:Height>
-          </gui:RowStyle>
-          <gui:RowStyle>
-            <gui:SizeType>Absolute</gui:SizeType>
-            <gui:Height>36</gui:Height>
-          </gui:RowStyle>
-          <gui:RowStyle>
-            <gui:SizeType>Absolute</gui:SizeType>
-            <gui:Height>50</gui:Height>
-          </gui:RowStyle>
-          <gui:RowStyle>
-            <gui:SizeType>Absolute</gui:SizeType>
-            <gui:Height>80</gui:Height>
-          </gui:RowStyle>
-        </gui:RowStyles>
-        <gui:CellSpans />
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="gui:TableLayoutPanelBuilder">
-        <gui:Name>VideoPanel</gui:Name>
-        <gui:Enabled>true</gui:Enabled>
-        <gui:Visible>true</gui:Visible>
-        <gui:ColumnCount>2</gui:ColumnCount>
-        <gui:RowCount>1</gui:RowCount>
-        <gui:ColumnStyles>
-          <gui:ColumnStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Width>50</gui:Width>
-          </gui:ColumnStyle>
-          <gui:ColumnStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Width>50</gui:Width>
-          </gui:ColumnStyle>
-        </gui:ColumnStyles>
-        <gui:RowStyles>
-          <gui:RowStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Height>100</gui:Height>
-          </gui:RowStyle>
-        </gui:RowStyles>
-        <gui:CellSpans />
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="SubscribeSubject">
@@ -608,7 +985,7 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:StartExperiment">
           <p1:DataFolder>data</p1:DataFolder>
-          <p1:AnimalId>fly01</p1:AnimalId>
+          <p1:AnimalId>fly2_stripes</p1:AnimalId>
           <p1:Experimenter />
           <p1:Notes />
           <p1:ProtocolFolder>protocols</p1:ProtocolFolder>
@@ -672,27 +1049,427 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
-        <gui:Name>RightPanel</gui:Name>
+        <gui:Name>SidePanel</gui:Name>
         <gui:Enabled>true</gui:Enabled>
         <gui:Visible>true</gui:Visible>
         <gui:ColumnCount>1</gui:ColumnCount>
-        <gui:RowCount>2</gui:RowCount>
-        <gui:ColumnStyles>
-          <gui:ColumnStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Width>100</gui:Width>
-          </gui:ColumnStyle>
-        </gui:ColumnStyles>
+        <gui:RowCount>7</gui:RowCount>
+        <gui:ColumnStyles />
         <gui:RowStyles>
           <gui:RowStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Height>75</gui:Height>
+            <gui:Height>50</gui:Height>
           </gui:RowStyle>
           <gui:RowStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Height>25</gui:Height>
+            <gui:SizeType>Absolute</gui:SizeType>
+            <gui:Height>30</gui:Height>
+          </gui:RowStyle>
+          <gui:RowStyle>
+            <gui:SizeType>Absolute</gui:SizeType>
+            <gui:Height>40</gui:Height>
+          </gui:RowStyle>
+          <gui:RowStyle>
+            <gui:SizeType>Absolute</gui:SizeType>
+            <gui:Height>36</gui:Height>
+          </gui:RowStyle>
+          <gui:RowStyle>
+            <gui:SizeType>Absolute</gui:SizeType>
+            <gui:Height>36</gui:Height>
+          </gui:RowStyle>
+          <gui:RowStyle>
+            <gui:SizeType>Absolute</gui:SizeType>
+            <gui:Height>50</gui:Height>
+          </gui:RowStyle>
+          <gui:RowStyle>
+            <gui:SizeType>Absolute</gui:SizeType>
+            <gui:Height>80</gui:Height>
           </gui:RowStyle>
         </gui:RowStyles>
+        <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:TableLayoutPanelBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:ColumnCount>1</gui:ColumnCount>
+        <gui:RowCount>4</gui:RowCount>
+        <gui:ColumnStyles />
+        <gui:RowStyles />
+        <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CropPolygon">
+          <cv:Regions>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>334</cv:X>
+                <cv:Y>270</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>334</cv:X>
+                <cv:Y>270</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>334</cv:X>
+                <cv:Y>270</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>334</cv:X>
+                <cv:Y>270</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>401</cv:X>
+                <cv:Y>245</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>403</cv:X>
+                <cv:Y>302</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>339</cv:X>
+                <cv:Y>372</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>292</cv:X>
+                <cv:Y>368</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+          </cv:Regions>
+          <cv:MaskType>ToZero</cv:MaskType>
+          <cv:FillValue>
+            <cv:Val0>255</cv:Val0>
+            <cv:Val1>0</cv:Val1>
+            <cv:Val2>0</cv:Val2>
+            <cv:Val3>0</cv:Val3>
+          </cv:FillValue>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:SliderBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Minimum>0</gui:Minimum>
+        <gui:Maximum>255</gui:Maximum>
+        <gui:DecimalPlaces>0</gui:DecimalPlaces>
+        <gui:Value>134</gui:Value>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="ThresholdValue" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Threshold">
+          <cv:ThresholdValue>134</cv:ThresholdValue>
+          <cv:MaxValue>255</cv:MaxValue>
+          <cv:ThresholdType>BinaryInv</cv:ThresholdType>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dsp:Sum" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Val0</Selector>
+      </Expression>
+      <Expression xsi:type="GreaterThan">
+        <Operand xsi:type="DoubleProperty">
+          <Value>1000</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Description />
+        <scr:Expression>convert.ToInt32(it)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="rx:Accumulate" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:TableLayoutPanelBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:ColumnCount>1</gui:ColumnCount>
+        <gui:RowCount>4</gui:RowCount>
+        <gui:ColumnStyles />
+        <gui:RowStyles />
+        <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CropPolygon">
+          <cv:Regions>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>207</cv:X>
+                <cv:Y>166</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>283</cv:X>
+                <cv:Y>141</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>232</cv:X>
+                <cv:Y>210</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>171</cv:X>
+                <cv:Y>251</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>219</cv:X>
+                <cv:Y>170</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>219</cv:X>
+                <cv:Y>170</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>219</cv:X>
+                <cv:Y>170</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>219</cv:X>
+                <cv:Y>170</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>230</cv:X>
+                <cv:Y>173</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>230</cv:X>
+                <cv:Y>173</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>230</cv:X>
+                <cv:Y>173</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>230</cv:X>
+                <cv:Y>173</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>229</cv:X>
+                <cv:Y>160</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+          </cv:Regions>
+          <cv:MaskType>ToZero</cv:MaskType>
+          <cv:FillValue>
+            <cv:Val0>255</cv:Val0>
+            <cv:Val1>0</cv:Val1>
+            <cv:Val2>0</cv:Val2>
+            <cv:Val3>0</cv:Val3>
+          </cv:FillValue>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:SliderBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Minimum>0</gui:Minimum>
+        <gui:Maximum>255</gui:Maximum>
+        <gui:DecimalPlaces>0</gui:DecimalPlaces>
+        <gui:Value>137</gui:Value>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="ThresholdValue" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Threshold">
+          <cv:ThresholdValue>137</cv:ThresholdValue>
+          <cv:MaxValue>255</cv:MaxValue>
+          <cv:ThresholdType>BinaryInv</cv:ThresholdType>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dsp:Sum" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Val0</Selector>
+      </Expression>
+      <Expression xsi:type="GreaterThan">
+        <Operand xsi:type="DoubleProperty">
+          <Value>1000</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Description />
+        <scr:Expression>convert.ToInt32(it)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="rx:Accumulate" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:TableLayoutPanelBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:ColumnCount>1</gui:ColumnCount>
+        <gui:RowCount>4</gui:RowCount>
+        <gui:ColumnStyles />
+        <gui:RowStyles />
+        <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="gui:TableLayoutPanelBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:ColumnCount>3</gui:ColumnCount>
+        <gui:RowCount>1</gui:RowCount>
+        <gui:ColumnStyles />
+        <gui:RowStyles />
         <gui:CellSpans />
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
@@ -704,21 +1481,32 @@ The binary image is analysed (FindContours > BinaryRegionAnalysis > LargestBinar
         <gui:RowCount>1</gui:RowCount>
         <gui:ColumnStyles>
           <gui:ColumnStyle>
-            <gui:SizeType>Absolute</gui:SizeType>
-            <gui:Width>460</gui:Width>
+            <gui:Width>10</gui:Width>
           </gui:ColumnStyle>
           <gui:ColumnStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Width>100</gui:Width>
+            <gui:Width>0</gui:Width>
           </gui:ColumnStyle>
         </gui:ColumnStyles>
-        <gui:RowStyles>
-          <gui:RowStyle>
-            <gui:SizeType>Percent</gui:SizeType>
-            <gui:Height>100</gui:Height>
-          </gui:RowStyle>
-        </gui:RowStyles>
+        <gui:RowStyles />
         <gui:CellSpans />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Centroid" />
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>data\centroid.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>false</io:Overwrite>
+        <io:Suffix>Timestamp</io:Suffix>
+        <io:IncludeHeader>true</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="vid:VideoCaptureDevice">
+            <vid:Index>0</vid:Index>
+            <vid:CaptureProperties />
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Annotation">
         <Name>Experiment</Name>
@@ -761,19 +1549,23 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
       <Edge From="2" To="3" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="6" To="8" Label="Source1" />
-      <Edge From="6" To="58" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="6" To="76" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="7" To="9" Label="Source1" />
+      <Edge From="7" To="82" Label="Source1" />
+      <Edge From="7" To="97" Label="Source1" />
       <Edge From="9" To="13" Label="Source1" />
+      <Edge From="9" To="77" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="10" To="53" Label="Source1" />
+      <Edge From="10" To="79" Label="Source1" />
       <Edge From="11" To="13" Label="Source2" />
       <Edge From="12" To="13" Label="Source3" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="13" To="59" Label="Source1" />
       <Edge From="14" To="15" Label="Source1" />
+      <Edge From="14" To="78" Label="Source1" />
       <Edge From="15" To="16" Label="Source1" />
       <Edge From="16" To="17" Label="Source1" />
+      <Edge From="16" To="115" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
       <Edge From="19" To="26" Label="Source1" />
       <Edge From="20" To="26" Label="Source2" />
@@ -783,71 +1575,110 @@ Double-click *MainWindow* while the workflow runs to open the window.]]></Text>
       <Edge From="22" To="24" Label="Source2" />
       <Edge From="23" To="24" Label="Source3" />
       <Edge From="23" To="27" Label="Source2" />
-      <Edge From="23" To="66" Label="Source3" />
+      <Edge From="23" To="60" Label="Source3" />
       <Edge From="24" To="25" Label="Source1" />
       <Edge From="25" To="26" Label="Source3" />
-      <Edge From="25" To="78" Label="Source4" />
+      <Edge From="25" To="72" Label="Source4" />
       <Edge From="26" To="27" Label="Source1" />
       <Edge From="27" To="28" Label="Source1" />
       <Edge From="28" To="29" Label="Source1" />
       <Edge From="28" To="34" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
-      <Edge From="30" To="70" Label="Source1" />
+      <Edge From="30" To="64" Label="Source1" />
       <Edge From="32" To="33" Label="Source1" />
-      <Edge From="33" To="56" Label="Source1" />
-      <Edge From="34" To="56" Label="Source2" />
+      <Edge From="33" To="74" Label="Source1" />
+      <Edge From="34" To="74" Label="Source2" />
       <Edge From="35" To="36" Label="Source1" />
-      <Edge From="35" To="63" Label="Source1" />
+      <Edge From="35" To="57" Label="Source1" />
       <Edge From="36" To="39" Label="Source1" />
       <Edge From="37" To="38" Label="Source1" />
-      <Edge From="37" To="68" Label="Source1" />
+      <Edge From="37" To="62" Label="Source1" />
       <Edge From="38" To="39" Label="Source2" />
       <Edge From="39" To="40" Label="Source1" />
-      <Edge From="40" To="56" Label="Source3" />
+      <Edge From="40" To="74" Label="Source3" />
       <Edge From="41" To="43" Label="Source1" />
       <Edge From="42" To="43" Label="Source2" />
       <Edge From="43" To="44" Label="Source1" />
-      <Edge From="44" To="56" Label="Source4" />
+      <Edge From="44" To="74" Label="Source4" />
       <Edge From="45" To="46" Label="Source1" />
-      <Edge From="45" To="73" Label="Source1" />
+      <Edge From="45" To="67" Label="Source1" />
       <Edge From="46" To="51" Label="Source1" />
       <Edge From="47" To="48" Label="Source1" />
-      <Edge From="47" To="75" Label="Source1" />
+      <Edge From="47" To="69" Label="Source1" />
       <Edge From="48" To="51" Label="Source2" />
       <Edge From="49" To="50" Label="Source1" />
-      <Edge From="49" To="77" Label="Source1" />
+      <Edge From="49" To="71" Label="Source1" />
       <Edge From="50" To="51" Label="Source3" />
       <Edge From="51" To="52" Label="Source1" />
-      <Edge From="52" To="56" Label="Source5" />
-      <Edge From="53" To="56" Label="Source6" />
+      <Edge From="52" To="74" Label="Source5" />
+      <Edge From="53" To="74" Label="Source6" />
       <Edge From="54" To="55" Label="Source1" />
-      <Edge From="55" To="56" Label="Source7" />
-      <Edge From="56" To="57" Label="Source1" />
-      <Edge From="57" To="82" Label="Source1" />
+      <Edge From="55" To="74" Label="Source7" />
+      <Edge From="56" To="57" Label="Source2" />
+      <Edge From="57" To="58" Label="Source1" />
       <Edge From="58" To="60" Label="Source1" />
       <Edge From="59" To="60" Label="Source2" />
       <Edge From="60" To="61" Label="Source1" />
-      <Edge From="61" To="80" Label="Source1" />
-      <Edge From="62" To="63" Label="Source2" />
-      <Edge From="63" To="64" Label="Source1" />
-      <Edge From="64" To="66" Label="Source1" />
-      <Edge From="65" To="66" Label="Source2" />
-      <Edge From="66" To="67" Label="Source1" />
-      <Edge From="67" To="78" Label="Source1" />
-      <Edge From="68" To="69" Label="Source1" />
-      <Edge From="69" To="78" Label="Source2" />
-      <Edge From="70" To="71" Label="Source1" />
-      <Edge From="71" To="72" Label="Source1" />
-      <Edge From="72" To="78" Label="Source3" />
-      <Edge From="73" To="74" Label="Source1" />
-      <Edge From="74" To="78" Label="Source5" />
-      <Edge From="75" To="76" Label="Source1" />
-      <Edge From="76" To="78" Label="Source6" />
-      <Edge From="77" To="78" Label="Source7" />
-      <Edge From="78" To="79" Label="Source1" />
-      <Edge From="79" To="80" Label="Source2" />
+      <Edge From="61" To="72" Label="Source1" />
+      <Edge From="62" To="63" Label="Source1" />
+      <Edge From="63" To="72" Label="Source2" />
+      <Edge From="64" To="65" Label="Source1" />
+      <Edge From="65" To="66" Label="Source1" />
+      <Edge From="66" To="72" Label="Source3" />
+      <Edge From="67" To="68" Label="Source1" />
+      <Edge From="68" To="72" Label="Source5" />
+      <Edge From="69" To="70" Label="Source1" />
+      <Edge From="70" To="72" Label="Source6" />
+      <Edge From="71" To="72" Label="Source7" />
+      <Edge From="72" To="73" Label="Source1" />
+      <Edge From="73" To="74" Label="Source8" />
+      <Edge From="74" To="75" Label="Source1" />
+      <Edge From="75" To="114" Label="Source1" />
+      <Edge From="76" To="80" Label="Source1" />
+      <Edge From="77" To="80" Label="Source2" />
+      <Edge From="78" To="80" Label="Source3" />
+      <Edge From="79" To="80" Label="Source4" />
       <Edge From="80" To="81" Label="Source1" />
-      <Edge From="81" To="82" Label="Source2" />
+      <Edge From="81" To="112" Label="Source1" />
+      <Edge From="82" To="83" Label="Source1" />
+      <Edge From="82" To="86" Label="Source1" />
+      <Edge From="83" To="95" Label="Source1" />
+      <Edge From="84" To="85" Label="Source1" />
+      <Edge From="84" To="94" Label="Source1" />
+      <Edge From="85" To="86" Label="Source2" />
+      <Edge From="86" To="87" Label="Source1" />
+      <Edge From="86" To="88" Label="Source1" />
+      <Edge From="87" To="95" Label="Source2" />
+      <Edge From="88" To="89" Label="Source1" />
+      <Edge From="89" To="90" Label="Source1" />
+      <Edge From="90" To="91" Label="Source1" />
+      <Edge From="91" To="92" Label="Source1" />
+      <Edge From="92" To="93" Label="Source1" />
+      <Edge From="93" To="95" Label="Source3" />
+      <Edge From="94" To="95" Label="Source4" />
+      <Edge From="95" To="96" Label="Source1" />
+      <Edge From="96" To="112" Label="Source2" />
+      <Edge From="97" To="98" Label="Source1" />
+      <Edge From="97" To="101" Label="Source1" />
+      <Edge From="98" To="110" Label="Source1" />
+      <Edge From="99" To="100" Label="Source1" />
+      <Edge From="99" To="109" Label="Source1" />
+      <Edge From="100" To="101" Label="Source2" />
+      <Edge From="101" To="102" Label="Source1" />
+      <Edge From="101" To="103" Label="Source1" />
+      <Edge From="102" To="110" Label="Source2" />
+      <Edge From="103" To="104" Label="Source1" />
+      <Edge From="104" To="105" Label="Source1" />
+      <Edge From="105" To="106" Label="Source1" />
+      <Edge From="106" To="107" Label="Source1" />
+      <Edge From="107" To="108" Label="Source1" />
+      <Edge From="108" To="110" Label="Source3" />
+      <Edge From="109" To="110" Label="Source4" />
+      <Edge From="110" To="111" Label="Source1" />
+      <Edge From="111" To="112" Label="Source3" />
+      <Edge From="112" To="113" Label="Source1" />
+      <Edge From="113" To="114" Label="Source2" />
+      <Edge From="115" To="116" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

@@ -47,7 +47,7 @@ namespace Buridan.Bonsai
         /// <summary>
         /// Gets or sets the frame rate at which the Pi renders this protocol.
         /// </summary>
-        [Description("Frame rate (Hz) at which the Pi renders this protocol (1-240).")]
+        [Description("Frame rate (Hz) at which the Pi renders this protocol (1-1000).")]
         public double FrameRateHz { get; set; }
 
         /// <summary>
@@ -101,9 +101,9 @@ namespace Buridan.Bonsai
             {
                 throw new ArgumentException("Protocol name may only contain letters, digits, '_' and '-' (1-64 characters).");
             }
-            if (FrameRateHz < 1.0 || FrameRateHz > 240.0)
+            if (FrameRateHz < 1.0 || FrameRateHz > 1000.0)
             {
-                throw new ArgumentException("FrameRateHz must be between 1 and 240.");
+                throw new ArgumentException("FrameRateHz must be between 1 and 1000.");
             }
             if (Epochs == null || Epochs.Count == 0)
             {

@@ -1,16 +1,16 @@
 {
   "name": "classic_buridan",
   "schema_version": 1,
-  "frame_rate_hz":240,
+  "frame_rate_hz": 60,
   "epochs": [
     {
       "type": "stripes",
       "duration_s": 900,
       "params": {
-        "centers_deg": [150, 330],
+        "centers_deg": [0, 180],
         "width_deg": 11.25,
         "stripe_rgb": [0, 0, 0],
-        "background_rgb": [0, 255, 0]
+        "background_rgb": [255, 255, 255]
       }
     }
   ]

@@ -27,7 +27,15 @@ namespace Buridan.Bonsai
         const string CategoryGeneral = "1. Epoch";
         const string CategoryStripes = "2. Stripes parameters";
         const string CategoryGrating = "3. Grating parameters";
-        const string CategoryBlank = "4. Blank parameters";
+        const string CategoryBarRegions = "4. Bar regions parameters";
+        const string CategoryBlank = "5. Blank parameters";
+
+        // Allowance for rounding errors (same as buridan_server), so that a bar
+        // of exactly one pixel is not rejected.
+        const double WidthToleranceDeg = 1e-9;
+
+        // Width of one ring pixel in degrees (384 pixels = 360 degrees).
+        const double DegreesPerPixel = 360.0 / 384.0;
 
         /// <summary>
         /// Creates an epoch with the default parameters of every stimulus type.
@@ -54,6 +62,17 @@ namespace Buridan.Bonsai
             PhaseDeg = 0.0;
             ColorA = Color.White;
             ColorB = Color.Black;
+
+            // Bar regions: 3 bars of 10 degrees with 30 degree gaps on each side.
+            BarRegionCenterDeg = 0.0;
+            RegionAWidthDeg = 90.0;
+            RegionABars = 3;
+            RegionABarFraction = 0.25;
+            RegionBWidthDeg = 90.0;
+            RegionBBars = 3;
+            RegionBBarFraction = 0.25;
+            BarColor = Color.Black;
+            BarBackgroundColor = Color.White;
 
             // Blank.
             BlankColor = Color.Black;
@@ -188,6 +207,97 @@ namespace Buridan.Bonsai
         public Color ColorB { get; set; }
 
         // ---------------------------------------------------------------------
+        // Bar regions
+        // ---------------------------------------------------------------------
+
+        /// <summary>
+        /// Gets or sets the centre of region A, in degrees. Region B is centred 180 degrees away.
+        /// </summary>
+        [Category(CategoryBarRegions)]
+        [Description("Centre of region A, in degrees (0-360). Region B is centred exactly opposite (+180).")]
+        public double BarRegionCenterDeg { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of region A, in degrees.
+        /// </summary>
+        [Category(CategoryBarRegions)]
+        [Description("Width of region A, in degrees. Region A + region B must be at most 360.")]
+        public double RegionAWidthDeg { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of bars in region A.
+        /// </summary>
+        [Category(CategoryBarRegions)]
+        [Description("Number of bars in region A (0 = background only). The first and last bars touch the region edges.")]
+        public int RegionABars { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bar width as a fraction of the bar pitch in region A.
+        /// </summary>
+        [Category(CategoryBarRegions)]
+        [Description("Region A: bar width as a fraction (0-1] of the pitch (bar + gap). 1 fills the region.")]
+        public double RegionABarFraction { get; set; }
+
+        /// <summary>
+        /// Gets the resulting bar and gap widths of region A.
+        /// </summary>
+        [XmlIgnore]
+        [Category(CategoryBarRegions)]
+        [Description("Resulting bar and gap widths in region A (computed from the values above).")]
+        public string RegionALayout
+        {
+            get { return DescribeBarRegion(RegionAWidthDeg, RegionABars, RegionABarFraction); }
+        }
+
+        /// <summary>
+        /// Gets or sets the width of region B, in degrees.
+        /// </summary>
+        [Category(CategoryBarRegions)]
+        [Description("Width of region B, in degrees. Region A + region B must be at most 360.")]
+        public double RegionBWidthDeg { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of bars in region B.
+        /// </summary>
+        [Category(CategoryBarRegions)]
+        [Description("Number of bars in region B (0 = background only). The first and last bars touch the region edges.")]
+        public int RegionBBars { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bar width as a fraction of the bar pitch in region B.
+        /// </summary>
+        [Category(CategoryBarRegions)]
+        [Description("Region B: bar width as a fraction (0-1] of the pitch (bar + gap). 1 fills the region.")]
+        public double RegionBBarFraction { get; set; }
+
+        /// <summary>
+        /// Gets the resulting bar and gap widths of region B.
+        /// </summary>
+        [XmlIgnore]
+        [Category(CategoryBarRegions)]
+        [Description("Resulting bar and gap widths in region B (computed from the values above).")]
+        public string RegionBLayout
+        {
+            get { return DescribeBarRegion(RegionBWidthDeg, RegionBBars, RegionBBarFraction); }
+        }
+
+        /// <summary>
+        /// Gets or sets the colour of the bars.
+        /// </summary>
+        [XmlIgnore]
+        [Category(CategoryBarRegions)]
+        [Description("Colour of the bars (both regions).")]
+        public Color BarColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the colour of everything that is not a bar.
+        /// </summary>
+        [XmlIgnore]
+        [Category(CategoryBarRegions)]
+        [Description("Colour of the background (gaps and the rest of the ring).")]
+        public Color BarBackgroundColor { get; set; }
+
+        // ---------------------------------------------------------------------
         // Blank
         // ---------------------------------------------------------------------
 
@@ -237,6 +347,24 @@ namespace Buridan.Bonsai
         {
             get { return ColorTranslator.ToHtml(ColorB); }
             set { ColorB = ColorTranslator.FromHtml(value); }
+        }
+
+        /// <summary>Gets or sets <see cref="BarColor"/> as an HTML colour string.</summary>
+        [Browsable(false)]
+        [XmlElement("BarColor")]
+        public string BarColorHtml
+        {
+            get { return ColorTranslator.ToHtml(BarColor); }
+            set { BarColor = ColorTranslator.FromHtml(value); }
+        }
+
+        /// <summary>Gets or sets <see cref="BarBackgroundColor"/> as an HTML colour string.</summary>
+        [Browsable(false)]
+        [XmlElement("BarBackgroundColor")]
+        public string BarBackgroundColorHtml
+        {
+            get { return ColorTranslator.ToHtml(BarBackgroundColor); }
+            set { BarBackgroundColor = ColorTranslator.FromHtml(value); }
         }
 
         /// <summary>Gets or sets <see cref="BlankColor"/> as an HTML colour string.</summary>
@@ -295,6 +423,91 @@ namespace Buridan.Bonsai
                     throw new ArgumentException("DutyCycle must be between 0 and 1.");
                 }
             }
+            else if (Type == StimulusType.BarRegions)
+            {
+                ValidateBarRegion("Region A", RegionAWidthDeg, RegionABars, RegionABarFraction);
+                ValidateBarRegion("Region B", RegionBWidthDeg, RegionBBars, RegionBBarFraction);
+                // The regions are centred 180 degrees apart, so they overlap only
+                // if their widths add up to more than 360 degrees.
+                double totalWidthDeg = RegionAWidthDeg + RegionBWidthDeg;
+                if (totalWidthDeg > 360.0 + WidthToleranceDeg)
+                {
+                    throw new ArgumentException("RegionAWidthDeg + RegionBWidthDeg must be at most 360 (the regions overlap).");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Computes the bar layout of one region. The first bar starts at the
+        /// left edge of the region and the last bar ends at its right edge:
+        /// N bars of width f * p and N - 1 gaps of width (1 - f) * p fill the
+        /// width W, so the pitch is p = W / (N - 1 + f).
+        /// Only valid for at least one bar and a fraction greater than 0.
+        /// </summary>
+        static void ComputeBarLayout(double widthDeg, int bars, double fraction,
+                                     out double barWidthDeg, out double gapWidthDeg)
+        {
+            double pitchDeg = widthDeg / (bars - 1.0 + fraction);
+            barWidthDeg = fraction * pitchDeg;
+            gapWidthDeg = pitchDeg - barWidthDeg;
+        }
+
+        // Checks one region with the same rules as buridan_server.
+        static void ValidateBarRegion(string regionName, double widthDeg, int bars, double fraction)
+        {
+            if (widthDeg <= 0.0 || widthDeg > 360.0)
+            {
+                throw new ArgumentException(regionName + ": width must be greater than 0 and at most 360 degrees.");
+            }
+            if (bars < 0)
+            {
+                throw new ArgumentException(regionName + ": the number of bars must be 0 or more.");
+            }
+            if (fraction <= 0.0 || fraction > 1.0)
+            {
+                throw new ArgumentException(regionName + ": the bar fraction must be greater than 0 and at most 1.");
+            }
+            if (bars == 0)
+            {
+                return;
+            }
+
+            double barWidthDeg;
+            double gapWidthDeg;
+            ComputeBarLayout(widthDeg, bars, fraction, out barWidthDeg, out gapWidthDeg);
+            if (barWidthDeg + WidthToleranceDeg < DegreesPerPixel)
+            {
+                throw new ArgumentException(regionName + ": bars would be " + barWidthDeg.ToString("0.###") +
+                    " degrees wide, less than one pixel (0.9375); use fewer bars, a larger fraction or a wider region.");
+            }
+            bool hasGaps = bars > 1 && fraction < 1.0;
+            if (hasGaps && gapWidthDeg + WidthToleranceDeg < DegreesPerPixel)
+            {
+                throw new ArgumentException(regionName + ": gaps would be " + gapWidthDeg.ToString("0.###") +
+                    " degrees wide, less than one pixel (0.9375); use fewer bars, a smaller fraction or a wider region.");
+            }
+        }
+
+        // Text shown in the editor, e.g. "3 bars of 10 deg, gaps 30 deg".
+        static string DescribeBarRegion(double widthDeg, int bars, double fraction)
+        {
+            if (bars == 0)
+            {
+                return "no bars (background only)";
+            }
+            if (widthDeg <= 0.0 || bars < 0 || fraction <= 0.0 || fraction > 1.0)
+            {
+                return "invalid values";
+            }
+            double barWidthDeg;
+            double gapWidthDeg;
+            ComputeBarLayout(widthDeg, bars, fraction, out barWidthDeg, out gapWidthDeg);
+            string barsText = bars + (bars == 1 ? " bar of " : " bars of ") + barWidthDeg.ToString("0.##") + " deg";
+            if (bars == 1)
+            {
+                return barsText + " (fills the region)";
+            }
+            return barsText + ", gaps " + gapWidthDeg.ToString("0.##") + " deg";
         }
 
         /// <summary>

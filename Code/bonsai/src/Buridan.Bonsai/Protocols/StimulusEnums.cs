@@ -19,7 +19,10 @@ namespace Buridan.Bonsai
         Grating,
 
         /// <summary>A single uniform colour (default black). JSON: "blank".</summary>
-        Blank
+        Blank,
+
+        /// <summary>Two opposing regions filled with evenly spaced bars. JSON: "bar_regions".</summary>
+        BarRegions
     }
 
     /// <summary>

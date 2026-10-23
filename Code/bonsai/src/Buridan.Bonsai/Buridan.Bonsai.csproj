@@ -19,7 +19,7 @@
 
     <!-- NuGet package metadata. The "Bonsai" tag makes Bonsai load the package. -->
     <PackageId>Buridan.Bonsai</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.1</Version>
     <Authors>Buridan arena project</Authors>
     <Title>Buridan Arena operators for Bonsai</Title>
     <Description>Operators to control the Buridan arena LED ring (Raspberry Pi running buridan_server), edit stimulus protocols and record experiment sessions.</Description>

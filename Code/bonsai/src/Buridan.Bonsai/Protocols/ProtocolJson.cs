@@ -32,6 +32,10 @@ namespace Buridan.Bonsai
         const double DefaultDutyCycle = 0.5;
         const double DefaultPhaseDeg = 0.0;
         const double DefaultFrameRateHz = 60.0;
+        const double DefaultBarRegionCenterDeg = 0.0;
+        const double DefaultRegionWidthDeg = 90.0;
+        const int DefaultRegionBars = 3;
+        const double DefaultRegionBarFraction = 0.25;
 
         /// <summary>
         /// Converts a protocol into indented JSON text.
@@ -161,6 +165,18 @@ namespace Buridan.Bonsai
                 parameters["rgb_a"] = ColorToJson(epoch.ColorA);
                 parameters["rgb_b"] = ColorToJson(epoch.ColorB);
             }
+            else if (epoch.Type == StimulusType.BarRegions)
+            {
+                parameters["center_deg"] = epoch.BarRegionCenterDeg;
+                parameters["region_a_width_deg"] = epoch.RegionAWidthDeg;
+                parameters["region_a_bars"] = epoch.RegionABars;
+                parameters["region_a_bar_fraction"] = epoch.RegionABarFraction;
+                parameters["region_b_width_deg"] = epoch.RegionBWidthDeg;
+                parameters["region_b_bars"] = epoch.RegionBBars;
+                parameters["region_b_bar_fraction"] = epoch.RegionBBarFraction;
+                parameters["bar_rgb"] = ColorToJson(epoch.BarColor);
+                parameters["background_rgb"] = ColorToJson(epoch.BarBackgroundColor);
+            }
             else
             {
                 parameters["rgb"] = ColorToJson(epoch.BlankColor);
@@ -214,6 +230,18 @@ namespace Buridan.Bonsai
                 epoch.ColorA = ReadColor(parameters, "rgb_a", Color.White);
                 epoch.ColorB = ReadColor(parameters, "rgb_b", Color.Black);
             }
+            else if (epoch.Type == StimulusType.BarRegions)
+            {
+                epoch.BarRegionCenterDeg = ReadDouble(parameters, "center_deg", DefaultBarRegionCenterDeg);
+                epoch.RegionAWidthDeg = ReadDouble(parameters, "region_a_width_deg", DefaultRegionWidthDeg);
+                epoch.RegionABars = ReadInt(parameters, "region_a_bars", DefaultRegionBars);
+                epoch.RegionABarFraction = ReadDouble(parameters, "region_a_bar_fraction", DefaultRegionBarFraction);
+                epoch.RegionBWidthDeg = ReadDouble(parameters, "region_b_width_deg", DefaultRegionWidthDeg);
+                epoch.RegionBBars = ReadInt(parameters, "region_b_bars", DefaultRegionBars);
+                epoch.RegionBBarFraction = ReadDouble(parameters, "region_b_bar_fraction", DefaultRegionBarFraction);
+                epoch.BarColor = ReadColor(parameters, "bar_rgb", Color.Black);
+                epoch.BarBackgroundColor = ReadColor(parameters, "background_rgb", Color.White);
+            }
             else
             {
                 epoch.BlankColor = ReadColor(parameters, "rgb", Color.Black);
@@ -233,6 +261,8 @@ namespace Buridan.Bonsai
                     return "stripes";
                 case StimulusType.Grating:
                     return "grating";
+                case StimulusType.BarRegions:
+                    return "bar_regions";
                 default:
                     return "blank";
             }
@@ -247,6 +277,10 @@ namespace Buridan.Bonsai
             if (text == "grating")
             {
                 return StimulusType.Grating;
+            }
+            if (text == "bar_regions")
+            {
+                return StimulusType.BarRegions;
             }
             if (text == "blank")
             {

@@ -1,21 +1,21 @@
 {
   "name": "bar_regions_example",
   "schema_version": 1,
-  "frame_rate_hz": 60,
+  "frame_rate_hz": 350,
   "epochs": [
     {
       "type": "bar_regions",
-      "duration_s": 300,
+      "duration_s": 900,
       "params": {
-        "center_deg": 0,
-        "region_a_width_deg": 90,
-        "region_a_bars": 3,
-        "region_a_bar_fraction": 0.25,
-        "region_b_width_deg": 90,
-        "region_b_bars": 6,
-        "region_b_bar_fraction": 0.25,
-        "bar_rgb": [0, 0, 0],
-        "background_rgb": [255, 255, 255]
+        "center_deg": 30,
+        "region_a_width_deg": 10,
+        "region_a_bars": 1,
+        "region_a_bar_fraction": 0.5,
+        "region_b_width_deg": 10,
+        "region_b_bars": 0,
+        "region_b_bar_fraction": 0.5,
+        "bar_rgb": [0, 255, 0],
+        "background_rgb": [0, 0, 0]
       }
     }
   ]
